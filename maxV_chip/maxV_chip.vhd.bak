@@ -1,0 +1,379 @@
+----------------------------------------------------------------------
+---- ----
+---- LPC CONTROL INTERFACE FOR Xbox Repair Chips ----
+---- ----
+---- maxV_chip.vhd ----
+---- ----
+---- ----
+---- Description: ----
+---- ----
+---- ----
+---- ----
+---- Author(s): ----
+---- - Aaron Van Tassle (Kekule), Ryan Wendland (Ryzee119)
+----------------------------------------------------------------------
+
+
+
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.STD_LOGIC_ARITH.ALL;
+USE IEEE.STD_LOGIC_UNSIGNED.ALL;
+ENTITY MAX_V_NOR_FLASH_MODCHIP IS
+	PORT (
+		CLK_50MHZ : IN STD_LOGIC;
+		
+		--HEADER_SCK : OUT STD_LOGIC;
+		--HEADER_MOSI : OUT STD_LOGIC;
+		LEDS : OUT STD_LOGIC_VECTOR (2 DOWNTO 0); -- R G B
+		
+		-- LPC IO
+		LPC_CLK : IN STD_LOGIC;
+		LPC_RST : IN STD_LOGIC;
+		LPC_LAD : INOUT STD_LOGIC_VECTOR (3 DOWNTO 0);
+		
+		-- IO for BANK SWITCHING
+		BNK : IN STD_LOGIC_VECTOR (2 DOWNTO 0); -- hardware bank switch
+		
+		-- NOR FLASH IO
+		ADDR_o : OUT STD_LOGIC_VECTOR (20 DOWNTO 0); -- memory address input
+		FLASH_DQ : INOUT STD_LOGIC_VECTOR (7 DOWNTO 0); -- data to be transferred
+--		nCE_o : OUT STD_LOGIC; --chip enable active low... not used
+		FLASH_OE : OUT STD_LOGIC; --output enable active low
+		FLASH_WE : OUT STD_LOGIC; -- write enable active low
+		
+		--HD44780 LCD Pins
+		LCD_DATA : OUT std_logic_vector (3 DOWNTO 0);
+		LCD_RS : OUT std_logic;
+		LCD_E : OUT std_logic;
+		LCD_CONTRAST : OUT std_logic;
+		LCD_PWM : IN STD_LOGIC;
+		--LCD_COUNT_ADDRESS: INOUT STD_LOGIC_VECTOR (1 downto 0 )
+		control_D0 : INOUT STD_LOGIC
+	);
+END MAX_V_NOR_FLASH_MODCHIP;
+
+ARCHITECTURE MAX_V_NOR_FLASH_MODCHIP_arch OF MAX_V_NOR_FLASH_MODCHIP IS
+
+
+	-- LPC BUS STATES for memory IO. Will need to include other states to
+	-- support other LPC transactions.
+	TYPE LPC_CURRENT_STATE_MACHINE IS
+	(
+	WAIT_START,
+	CYCTYPE_DIR,
+	ADDR7, --beginning of address bits
+	ADDR6,
+	ADDR5,
+	ADDR4,
+	ADDR3,
+	ADDR2,
+	ADDR1,
+	ADDR0,
+	-- jump based on CYC_TYPE not currently implemented
+	
+	--IO WRITE
+	IO_WRITE_DATA0,
+	IO_WRITE_DATA1,
+	IO_WRITE_DATA2,
+	--JUMP TO TAR
+	--JUMP TO SYNC_WAIT3
+	
+	--MEMORY READ
+	--JUMP TO TAR
+	--JUMP TO SYNC_WAIT5
+	MEM_READ_DATA0,
+	MEM_READ_DATA1,
+
+	--MEMORY WRITE
+	MEM_WRITE_DATA0,
+	MEM_WRITE_DATA1,
+	--JUMP TO TAR
+	--JUMP TO SYNC_WAIT5
+	
+	TAR1,
+	TAR2,
+	--JUMP TO CORRECT POS BASED ON CYC_TYPE
+
+	SYNC_WAIT5,
+	SYNC_WAIT4,
+	SYNC_WAIT3,
+	SYNC_WAIT2,
+	SYNC_WAIT1,
+
+	--TRANSACTION CLOSE
+	SYNC_COMPLETE,
+
+	TAR_EXIT1,
+	TAR_EXIT2
+	);
+	TYPE CYC_TYPE IS (
+	IO_READ,
+	IO_WRITE,
+	MEM_READ,
+	MEM_WRITE,
+	CYC_CLEARED
+	);
+	SIGNAL LPC_CURRENT_STATE : LPC_CURRENT_STATE_MACHINE := WAIT_START;
+	SIGNAL CYCLE_TYPE : CYC_TYPE;
+	SIGNAL count : STD_LOGIC_VECTOR (24 DOWNTO 0) := (OTHERS => '0');
+--	SIGNAL rRW : STD_LOGIC := '1';
+	SIGNAL ADDR : STD_LOGIC_VECTOR (20 DOWNTO 0) := (OTHERS => '0');
+	SIGNAL DQ : STD_LOGIC_VECTOR (7 DOWNTO 0) := (OTHERS => '0');
+--	SIGNAL nCE : STD_LOGIC := '1';
+--	SIGNAL nOE : STD_LOGIC := '1';
+--	SIGNAL nWE : STD_LOGIC := '1';
+	--from LPC2LCD
+	SIGNAL LCD_ADDRESS : STD_LOGIC_VECTOR (15 DOWNTO 0) := "0000000000000000";
+	--0,D6,D7,D4,D5,E,RS,0 from MSB to LSB, See Ref 2 Table 1.
+	SIGNAL LCD_DATA_BYTE : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00000000";
+	-- 0 to 16 contrast value
+	SIGNAL LCD_CONTRAST_NIBBLE : STD_LOGIC_VECTOR (3 DOWNTO 0) := "1100"; --Ok default contrast value
+	-- Counter used for the PWM output
+	SIGNAL PWM_COUNT_CONTRAST : STD_LOGIC_VECTOR(3 DOWNTO 0) := "0000";
+	SIGNAL LCD_COUNT_ADDRESS : STD_LOGIC_VECTOR (1 DOWNTO 0) := "00";
+	SIGNAL reset,CONTRAST_TARGET : STD_LOGIC:='0';
+	SIGNAL pos : STD_LOGIC_VECTOR(6 DOWNTO 0) := "0000000";
+BEGIN
+
+PW : entity work.pwm port map(CLK_50MHZ,reset, pos, CONTRAST_TARGET);
+
+
+	-- Connections for LCD transaction
+	--LCD Data has this format
+	--X,D6,D7,D4,D5,E,RS,X in that order. See Ref 2.
+	LCD_RS <= LCD_DATA_BYTE(1);
+	LCD_E <= LCD_DATA_BYTE(2);
+	LCD_DATA(0) <= LCD_DATA_BYTE(4);
+	LCD_DATA(1) <= LCD_DATA_BYTE(3);
+	LCD_DATA(2) <= LCD_DATA_BYTE(6);
+	LCD_DATA(3) <= LCD_DATA_BYTE(5);
+	-- Control LED IO with counter pattern
+	LEDS <= NOT count(24 DOWNTO 22);
+	-- Generate a counter for HW debug purposes
+	PROCESS (CLK_50MHZ)
+	BEGIN
+		IF RISING_EDGE(CLK_50MHZ) THEN
+			count <= count + 1;
+		END IF;
+	END PROCESS;
+	--Generate signal for PWM on LCD
+	PROCESS (LCD_PWM)
+		BEGIN
+			IF RISING_EDGE(CLK_50MHZ) THEN
+				--do the PWM here
+			END IF;
+		END PROCESS;
+		-- Connections to NOR flash
+		-- FLASH_WE <= nWE;
+		--nCE_o <= nCE;
+		-- FLASH_OE <= nOE;
+		ADDR_o <= ADDR;
+		-- Control NOR flash bi-directional IO
+		--FLASH_DQ <= DQ WHEN rRW = '1' ELSE "ZZZZZZZZ";
+
+		-- Provide the appropriate connection to the LPC bus master
+		-- LPC_LAD <= "0000" WHEN LPC_CURRENT_STATE = SYNC ELSE
+		-- FLASH_DQ(3 DOWNTO 0) WHEN LPC_CURRENT_STATE = MEM_READ_DATA0 ELSE --DATA1 == MEM_READ_DATA0
+		-- FLASH_DQ(7 DOWNTO 4) WHEN LPC_CURRENT_STATE = MEM_READ_DATA1 ELSE --DATA2 == MEM_READ_DATA1
+		-- "ZZZZ";
+		--
+		--LAD lines can be either input or output
+		--The output values depend on variable states of the LPC transaction!
+		LPC_LAD <= "0000" WHEN LPC_CURRENT_STATE = SYNC_COMPLETE ELSE
+		           "0101" WHEN LPC_CURRENT_STATE = SYNC_WAIT5 ELSE
+		           "0101" WHEN LPC_CURRENT_STATE = SYNC_WAIT4 ELSE
+		           "0101" WHEN LPC_CURRENT_STATE = SYNC_WAIT3 ELSE
+		           "0101" WHEN LPC_CURRENT_STATE = SYNC_WAIT2 ELSE
+		           "0101" WHEN LPC_CURRENT_STATE = SYNC_WAIT1 ELSE
+		           "1111" WHEN LPC_CURRENT_STATE = TAR2 ELSE
+		           "1111" WHEN LPC_CURRENT_STATE = TAR_EXIT1 ELSE
+		           FLASH_DQ(3 DOWNTO 0) WHEN LPC_CURRENT_STATE = MEM_READ_DATA0 ELSE --This has to be lower nibble first!
+		           FLASH_DQ(7 DOWNTO 4) WHEN LPC_CURRENT_STATE = MEM_READ_DATA1 ELSE --The upper nibble on the second clock.
+		           "ZZZZ";
+		--Flash data vector outputs the data value in MEM_WRITE mode, else its just an input
+		FLASH_DQ <= DQ WHEN CYCLE_TYPE = MEM_WRITE ELSE "ZZZZZZZZ";
+		--Active low signals, Write Enable and Output Enable for Flash Memory Write and Reads respectively.
+		--FLASH_WE <= '0' WHEN CYCLE_TYPE = MEM_WRITE ELSE '1';
+		FLASH_WE <= '0' WHEN CYCLE_TYPE = MEM_WRITE AND
+		            (LPC_CURRENT_STATE = TAR1 OR
+		            LPC_CURRENT_STATE = TAR2 OR
+		            LPC_CURRENT_STATE = SYNC_WAIT5 OR
+		            LPC_CURRENT_STATE = SYNC_WAIT4 OR
+		            LPC_CURRENT_STATE = SYNC_WAIT3 OR
+		            LPC_CURRENT_STATE = SYNC_WAIT2 OR
+		            LPC_CURRENT_STATE = SYNC_WAIT1 OR
+		            LPC_CURRENT_STATE = SYNC_COMPLETE OR
+		            LPC_CURRENT_STATE = TAR_EXIT1) ELSE '1';
+
+
+		FLASH_OE <= '0' WHEN CYCLE_TYPE = MEM_READ AND
+		            (LPC_CURRENT_STATE = TAR1 OR
+		            LPC_CURRENT_STATE = TAR2 OR
+		            LPC_CURRENT_STATE = SYNC_WAIT5 OR
+		            LPC_CURRENT_STATE = SYNC_WAIT4 OR
+		            LPC_CURRENT_STATE = SYNC_WAIT3 OR
+		            LPC_CURRENT_STATE = SYNC_WAIT2 OR
+		            LPC_CURRENT_STATE = SYNC_WAIT1 OR
+		            LPC_CURRENT_STATE = SYNC_COMPLETE OR
+		            LPC_CURRENT_STATE = MEM_READ_DATA0 OR
+		            LPC_CURRENT_STATE = MEM_READ_DATA1 OR
+		            LPC_CURRENT_STATE = TAR_EXIT1) ELSE '1';
+
+
+		--D0 recreates LFRAME. This is required for a 1.6
+		control_D0 <= '0' WHEN (LPC_LAD = "0000" AND LPC_CURRENT_STATE = WAIT_START) ELSE 'Z';
+		-- LPC Device State machine, see the Intel LPC Specifications for details
+		PROCESS (LPC_RST, LPC_CLK) BEGIN
+		IF (LPC_RST = '0') THEN
+			LCD_DATA_BYTE <= "00000000";
+			LCD_ADDRESS <= "0000000000000000";
+			--PWM_COUNT_CONTRAST <= "0000";
+			LCD_CONTRAST_NIBBLE <= "1100";
+--			rRW <= '1';
+--			nCE <= '1';
+--			nOE <= '1';
+--			nWE <= '1';
+			DQ <= (OTHERS => '0');
+			ADDR <= (OTHERS => '0');
+			LPC_CURRENT_STATE <= WAIT_START;
+			CYCLE_TYPE <= CYC_CLEARED;
+		ELSIF (rising_edge(LPC_CLK)) THEN
+			CASE LPC_CURRENT_STATE IS
+				WHEN WAIT_START =>
+					IF LPC_LAD = "0000" THEN --indicates start of cycle for memory IO and DMA cycles, and indicates LFRAME on 1.3+
+						LPC_CURRENT_STATE <= CYCTYPE_DIR;
+					END IF;
+				WHEN CYCTYPE_DIR => --determine transaction type
+					IF LPC_LAD(3 DOWNTO 1) = "000" THEN
+						CYCLE_TYPE <= IO_READ;
+						LPC_CURRENT_STATE <= ADDR3;
+						--ELSIF LPC_LAD(3 DOWNTO 1) = "001" THEN --"001" host requested an I/O write (LCD command)
+						-- LPC_CURRENT_STATE <= LCD_PROC_ADDRESS; -- LCD trenscation, lets find out what address
+					ELSIF LPC_LAD(3 DOWNTO 1) = "001" THEN
+						CYCLE_TYPE <= IO_WRITE;
+						LPC_CURRENT_STATE <= ADDR3;
+					ELSIF LPC_LAD(3 DOWNTO 1) = "010" THEN
+						CYCLE_TYPE <= MEM_READ;
+						LPC_CURRENT_STATE <= ADDR7;
+					ELSIF LPC_LAD(3 DOWNTO 1) = "011" THEN
+						CYCLE_TYPE <= MEM_WRITE;
+						LPC_CURRENT_STATE <= ADDR7;
+					ELSE
+						LPC_CURRENT_STATE <= WAIT_START; -- Unsupported, reset state machine.
+					END IF;
+				WHEN ADDR7 =>
+					LPC_CURRENT_STATE <= ADDR6;
+				WHEN ADDR6 =>
+					LPC_CURRENT_STATE <= ADDR5;
+				WHEN ADDR5 =>
+					--once i implement software control this needs to change
+					ADDR(20) <= BNK(2); --BNK GND for bank 0 (first 256k of flash)
+					LPC_CURRENT_STATE <= ADDR4;
+				WHEN ADDR4 =>
+					ADDR(19 DOWNTO 16) <= BNK(1 DOWNTO 0) & LPC_LAD(1 DOWNTO 0); --BNK GND for bank 0 (first 256k of flash)
+					LPC_CURRENT_STATE <= ADDR3;
+				WHEN ADDR3 =>
+					ADDR(15 DOWNTO 12) <= LPC_LAD;
+					LPC_CURRENT_STATE <= ADDR2;
+				WHEN ADDR2 =>
+					ADDR(11 DOWNTO 8) <= LPC_LAD;
+					LPC_CURRENT_STATE <= ADDR1;
+				WHEN ADDR1 =>
+					ADDR(7 DOWNTO 4) <= LPC_LAD;
+					LPC_CURRENT_STATE <= ADDR0;
+				WHEN ADDR0 => --the bank is hardwired at the moment
+					ADDR(3 DOWNTO 0) <= LPC_LAD;
+					--Jump to correct section below
+					IF CYCLE_TYPE = IO_READ THEN
+						--LPC_CURRENT_STATE <= TAR1;
+						LPC_CURRENT_STATE <= WAIT_START;
+					ELSIF CYCLE_TYPE = IO_WRITE THEN
+						LPC_CURRENT_STATE <= IO_WRITE_DATA0;
+					ELSIF CYCLE_TYPE = MEM_READ THEN
+						LPC_CURRENT_STATE <= TAR1;
+					ELSIF CYCLE_TYPE = MEM_WRITE THEN
+						LPC_CURRENT_STATE <= MEM_WRITE_DATA0;
+					END IF;
+					--IO WRITE
+				WHEN IO_WRITE_DATA0 =>
+					LCD_COUNT_ADDRESS <= LCD_COUNT_ADDRESS + 1;
+					IF (LCD_COUNT_ADDRESS = "00") THEN
+						LCD_ADDRESS(3 DOWNTO 0) <= LPC_LAD;
+						LPC_CURRENT_STATE <= IO_WRITE_DATA1;
+					END IF;
+					LPC_CURRENT_STATE <= IO_WRITE_DATA1;
+				WHEN IO_WRITE_DATA1 =>
+
+					CASE LCD_ADDRESS(1 DOWNTO 0) IS
+						WHEN "00" => -- LCD Data
+							LCD_DATA_BYTE(3 DOWNTO 0) <= LPC_LAD;
+						WHEN "11" => -- Contrast Value
+							IF (LCD_ADDRESS(3) = '0') THEN
+								LCD_CONTRAST_NIBBLE(3 DOWNTO 0) <= LPC_LAD;
+							END IF;
+						WHEN OTHERS =>
+				END CASE;
+				LPC_CURRENT_STATE <= IO_WRITE_DATA2;
+				WHEN IO_WRITE_DATA2 =>
+					--Second nibble of data byte...
+					CASE LCD_ADDRESS(1 DOWNTO 0) IS
+						WHEN "00" => -- LCD Data
+							LCD_DATA_BYTE(7 DOWNTO 4) <= LPC_LAD;
+						--WHEN "11" => -- Contrast Value
+						WHEN OTHERS =>
+				END CASE;
+				LPC_CURRENT_STATE <= TAR1;
+				--MEMORY READ
+				WHEN MEM_READ_DATA0 =>
+					LPC_CURRENT_STATE <= MEM_READ_DATA1;
+				WHEN MEM_READ_DATA1 =>
+					LPC_CURRENT_STATE <= TAR_EXIT1;
+					--MEMORY WRITE
+				WHEN MEM_WRITE_DATA0 =>
+					DQ(3 DOWNTO 0) <= LPC_LAD;
+					LPC_CURRENT_STATE <= MEM_WRITE_DATA1;
+				WHEN MEM_WRITE_DATA1 =>
+					DQ(7 DOWNTO 4) <= LPC_LAD;
+					LPC_CURRENT_STATE <= TAR1;
+
+				WHEN TAR1 =>
+			--		nCE <= '0'; --disable chip
+					LPC_CURRENT_STATE <= TAR2;
+				WHEN TAR2 =>
+					LPC_CURRENT_STATE <= SYNC_WAIT5;
+
+				WHEN SYNC_WAIT5 =>
+					LPC_CURRENT_STATE <= SYNC_WAIT4;
+				WHEN SYNC_WAIT4 =>
+					LPC_CURRENT_STATE <= SYNC_WAIT3;
+				WHEN SYNC_WAIT3 =>
+					LPC_CURRENT_STATE <= SYNC_WAIT2;
+				WHEN SYNC_WAIT2 =>
+					LPC_CURRENT_STATE <= SYNC_WAIT1;
+				WHEN SYNC_WAIT1 =>
+					LPC_CURRENT_STATE <= SYNC_COMPLETE;
+
+				WHEN SYNC_COMPLETE =>
+					IF CYCLE_TYPE = MEM_READ THEN
+						LPC_CURRENT_STATE <= MEM_READ_DATA0;
+					ELSE
+						LPC_CURRENT_STATE <= TAR_EXIT1;
+					END IF;
+				WHEN TAR_EXIT1 =>
+					LPC_CURRENT_STATE <= TAR_EXIT2;
+				WHEN TAR_EXIT2 =>
+					CYCLE_TYPE <= CYC_CLEARED;
+					--deactivate all the lines
+		--			rRW <= '1';
+		--			nCE <= '1';
+		--			nOE <= '1';
+		--			nWE <= '1';
+					LPC_CURRENT_STATE <= WAIT_START;
+			END CASE;
+		END IF;
+		END PROCESS;
+
+
+END MAX_V_NOR_FLASH_MODCHIP_arch;
+
