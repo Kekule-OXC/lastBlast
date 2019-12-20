@@ -51,19 +51,12 @@ set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR "-1"
 set_global_assignment -name VHDL_FILE maxV_pwm.vhd
 set_global_assignment -name VHDL_FILE maxV_chip.vhd
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "NO HEAT SINK WITH STILL AIR"
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to CLK_50MHZ
 set_location_assignment PIN_22 -to LPC_LAD[3]
 set_location_assignment PIN_25 -to LPC_LAD[1]
 set_location_assignment PIN_26 -to LPC_LAD[0]
 set_location_assignment PIN_21 -to LPC_RST
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to control_D0
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to LEDS[2]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to LEDS[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to LEDS[0]
 set_location_assignment PIN_24 -to LPC_LAD[2]
-set_location_assignment PIN_64 -to LEDS[0]
-set_location_assignment PIN_63 -to LEDS[1]
-set_location_assignment PIN_1 -to LEDS[2]
 set_location_assignment PIN_36 -to FLASH_WE
 set_location_assignment PIN_51 -to FLASH_OE
 set_location_assignment PIN_52 -to FLASH_DQ[0]
@@ -75,7 +68,6 @@ set_location_assignment PIN_58 -to FLASH_DQ[5]
 set_location_assignment PIN_59 -to FLASH_DQ[6]
 set_location_assignment PIN_60 -to FLASH_DQ[7]
 set_location_assignment PIN_20 -to control_D0
-set_location_assignment PIN_7 -to CLK_50MHZ
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LPC_CLK
 set_location_assignment PIN_12 -to LCD_CONTRAST
 set_global_assignment -name OPTIMIZATION_MODE "AGGRESSIVE PERFORMANCE"
@@ -121,9 +113,6 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FLASH_ADDRESS[11]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FLASH_ADDRESS[10]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FLASH_ADDRESS[9]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FLASH_ADDRESS[8]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to BANK[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to BANK[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to BANK[2]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FLASH_ADDRESS[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FLASH_ADDRESS[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FLASH_ADDRESS[3]
@@ -151,14 +140,8 @@ set_location_assignment PIN_32 -to FLASH_ADDRESS[11]
 set_location_assignment PIN_33 -to FLASH_ADDRESS[10]
 set_location_assignment PIN_34 -to FLASH_ADDRESS[9]
 set_location_assignment PIN_43 -to FLASH_ADDRESS[8]
-set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to BANK[0]
-set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to BANK[1]
-set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to BANK[2]
 set_location_assignment PIN_38 -to FLASH_ADDRESS[18]
 set_location_assignment PIN_37 -to FLASH_ADDRESS[19]
-set_location_assignment PIN_19 -to BANK[0]
-set_location_assignment PIN_18 -to BANK[1]
-set_location_assignment PIN_13 -to BANK[2]
 set_location_assignment PIN_5 -to LCD_OUT_DATA[0]
 set_location_assignment PIN_3 -to LCD_OUT_DATA[1]
 set_location_assignment PIN_4 -to LCD_OUT_DATA[2]
@@ -167,3 +150,9 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_OUT_DATA[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_OUT_DATA[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_OUT_DATA[2]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_OUT_DATA[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to LED_R
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to LED_B
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to LED_G
+set_location_assignment PIN_64 -to LED_G
+set_location_assignment PIN_63 -to LED_B
+set_location_assignment PIN_1 -to LED_R

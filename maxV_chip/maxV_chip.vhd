@@ -192,7 +192,7 @@ ARCHITECTURE Behavioral OF MAXV_CHIP IS
 --IO READ CONSTANTS
 	--SIGNAL REG_XODUS_CONTROL_READ : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00101010";--read		!!FIXME
 	CONSTANT REG_XODUS_ID_READ : STD_LOGIC_VECTOR(7 DOWNTO 0) := "01000101"; --0x45
-	SIGNAL REG_SYSCON_REG_READ : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01000101";--	!!FIXME
+	SIGNAL REG_SYSCON_REG_READ : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01000101";--	
 	SIGNAL REG_XBLAST_IO_READ : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00000000";--	!!FIXME
 	
 	
@@ -250,7 +250,8 @@ PW : entity work.pwm port map(LPC_CLK,reset, pos, CONTRAST_TARGET);
                LPC_CURRENT_STATE = TAR2 OR
                LPC_CURRENT_STATE = SYNC) ELSE '1';
 
-
+		--Output Enable for Flash Memory Read (Active low)
+		--Output Enable must be pulled low for 50ns before data is valid for reading
 		FLASH_OE <= '0' WHEN CYCLE_TYPE = MEM_READ AND
 		            (LPC_CURRENT_STATE = TAR1 OR
 		            LPC_CURRENT_STATE = TAR2 OR

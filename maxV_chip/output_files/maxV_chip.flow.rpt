@@ -1,5 +1,5 @@
 Flow report for maxV_chip
-Sun Dec 15 20:23:43 2019
+Fri Dec 20 06:07:26 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,7 +40,7 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------------+
 ; Flow Summary                                                        ;
 +-----------------------+---------------------------------------------+
-; Flow Status           ; Successful - Sun Dec 15 20:23:41 2019       ;
+; Flow Status           ; Successful - Fri Dec 20 06:07:24 2019       ;
 ; Quartus Prime Version ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name         ; maxV_chip                                   ;
 ; Top-level Entity Name ; MAXV_CHIP                                   ;
@@ -59,7 +59,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 12/15/2019 20:23:24 ;
+; Start date & time ; 12/20/2019 06:07:10 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; maxV_chip           ;
 +-------------------+---------------------+
@@ -70,7 +70,7 @@ refer to the applicable agreement for further details.
 +--------------------------------------+---------------------------------+---------------+-------------+------------+
 ; Assignment Name                      ; Value                           ; Default Value ; Entity Name ; Section Id ;
 +--------------------------------------+---------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID                ; 247207020387694.157646660409492 ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID                ; 247207020387694.157684723021880 ; --            ; --          ; --         ;
 ; FITTER_EFFORT                        ; Standard Fit                    ; Auto Fit      ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP               ; 85                              ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP               ; 0                               ; --            ; --          ; --         ;
@@ -91,11 +91,11 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:11     ; 1.0                     ; 4770 MB             ; 00:00:22                           ;
-; Fitter               ; 00:00:04     ; 1.1                     ; 5364 MB             ; 00:00:05                           ;
-; Assembler            ; 00:00:01     ; 1.0                     ; 4659 MB             ; 00:00:01                           ;
-; Timing Analyzer      ; 00:00:02     ; 1.0                     ; 4676 MB             ; 00:00:02                           ;
-; Total                ; 00:00:18     ; --                      ; --                  ; 00:00:30                           ;
+; Analysis & Synthesis ; 00:00:10     ; 1.0                     ; 4770 MB             ; 00:00:21                           ;
+; Fitter               ; 00:00:03     ; 1.0                     ; 5356 MB             ; 00:00:04                           ;
+; Assembler            ; 00:00:00     ; 1.0                     ; 4659 MB             ; 00:00:01                           ;
+; Timing Analyzer      ; 00:00:01     ; 1.0                     ; 4677 MB             ; 00:00:01                           ;
+; Total                ; 00:00:14     ; --                      ; --                  ; 00:00:27                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
