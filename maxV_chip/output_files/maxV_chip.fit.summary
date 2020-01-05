@@ -1,11 +1,11 @@
-Fitter Status : Successful - Fri Dec 20 06:07:23 2019
+Fitter Status : Successful - Thu Jan 02 16:15:06 2020
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : maxV_chip
 Top-level Entity Name : MAXV_CHIP
 Family : MAX V
 Device : 5M160ZE64C5
 Timing Models : Final
-Total logic elements : 138 / 160 ( 86 % )
+Total logic elements : 135 / 160 ( 84 % )
 Total pins : 49 / 54 ( 91 % )
 Total virtual pins : 0
 UFM blocks : 0 / 1 ( 0 % )

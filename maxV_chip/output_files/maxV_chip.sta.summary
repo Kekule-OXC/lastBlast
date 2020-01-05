@@ -3,7 +3,7 @@ Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Setup 'LPC_CLK'
-Slack : 7.224
+Slack : 7.411
 TNS   : 0.000
 
 Type  : Hold 'LPC_CLK'

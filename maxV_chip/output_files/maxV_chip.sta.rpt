@@ -1,5 +1,5 @@
 Timing Analyzer report for maxV_chip
-Fri Dec 20 06:07:26 2019
+Thu Jan 02 16:15:10 2020
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -76,11 +76,10 @@ refer to the applicable agreement for further details.
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 2           ;
+; Maximum used               ; 1           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.2%      ;
 +----------------------------+-------------+
 
 
@@ -89,7 +88,7 @@ refer to the applicable agreement for further details.
 +---------------+--------+--------------------------+
 ; SDC File Path ; Status ; Read at                  ;
 +---------------+--------+--------------------------+
-; maxV_chip.sdc ; OK     ; Fri Dec 20 06:07:26 2019 ;
+; maxV_chip.sdc ; OK     ; Thu Jan 02 16:15:10 2020 ;
 +---------------+--------+--------------------------+
 
 
@@ -107,7 +106,7 @@ refer to the applicable agreement for further details.
 +-----------+-----------------+------------+------+
 ; Fmax      ; Restricted Fmax ; Clock Name ; Note ;
 +-----------+-----------------+------------+------+
-; 43.91 MHz ; 43.91 MHz       ; LPC_CLK    ;      ;
+; 44.27 MHz ; 44.27 MHz       ; LPC_CLK    ;      ;
 +-----------+-----------------+------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -117,7 +116,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +---------+-------+---------------+
 ; Clock   ; Slack ; End Point TNS ;
 +---------+-------+---------------+
-; LPC_CLK ; 7.224 ; 0.000         ;
+; LPC_CLK ; 7.411 ; 0.000         ;
 +---------+-------+---------------+
 
 
@@ -151,220 +150,220 @@ No paths to report.
 +---------+--------+---------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------+
-; Setup: 'LPC_CLK'                                                                                                                    ;
-+--------+------------------------------+-----------------------+--------------+-------------+--------------+------------+------------+
-; Slack  ; From Node                    ; To Node               ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
-+--------+------------------------------+-----------------------+--------------+-------------+--------------+------------+------------+
-; 7.224  ; LPC_ADDRESS[3]               ; REG_XBLAST_CONTROL[1] ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 22.455     ;
-; 7.224  ; LPC_ADDRESS[3]               ; REG_XBLAST_CONTROL[0] ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 22.455     ;
-; 7.866  ; LPC_ADDRESS[14]              ; READBUFFER[7]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 21.813     ;
-; 7.868  ; LPC_ADDRESS[14]              ; READBUFFER[1]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 21.811     ;
-; 7.872  ; LPC_ADDRESS[14]              ; READBUFFER[4]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 21.807     ;
-; 7.873  ; LPC_ADDRESS[14]              ; READBUFFER[3]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 21.806     ;
-; 8.191  ; LPC_ADDRESS[10]              ; READBUFFER[7]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 21.488     ;
-; 8.193  ; LPC_ADDRESS[10]              ; READBUFFER[1]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 21.486     ;
-; 8.197  ; LPC_ADDRESS[10]              ; READBUFFER[4]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 21.482     ;
-; 8.198  ; LPC_ADDRESS[10]              ; READBUFFER[3]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 21.481     ;
-; 8.904  ; LPC_ADDRESS[2]               ; REG_XBLAST_CONTROL[1] ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 20.775     ;
-; 8.904  ; LPC_ADDRESS[2]               ; REG_XBLAST_CONTROL[0] ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 20.775     ;
-; 9.007  ; LPC_ADDRESS[0]               ; READBUFFER[7]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 20.672     ;
-; 9.009  ; LPC_ADDRESS[0]               ; READBUFFER[1]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 20.670     ;
-; 9.013  ; LPC_ADDRESS[0]               ; READBUFFER[4]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 20.666     ;
-; 9.014  ; LPC_ADDRESS[0]               ; READBUFFER[3]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 20.665     ;
-; 9.517  ; LPC_ADDRESS[14]              ; READBUFFER[5]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 20.162     ;
-; 9.626  ; LPC_ADDRESS[13]              ; READBUFFER[7]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 20.053     ;
-; 9.628  ; LPC_ADDRESS[13]              ; READBUFFER[1]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 20.051     ;
-; 9.632  ; LPC_ADDRESS[13]              ; READBUFFER[4]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 20.047     ;
-; 9.633  ; LPC_ADDRESS[13]              ; READBUFFER[3]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 20.046     ;
-; 9.667  ; pwm:PW|cnt[10]_RTM13         ; pwm:PW|cnt[8]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 20.012     ;
-; 9.785  ; LPC_ADDRESS[9]               ; REG_XBLAST_CONTROL[1] ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.894     ;
-; 9.785  ; LPC_ADDRESS[9]               ; REG_XBLAST_CONTROL[0] ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.894     ;
-; 9.793  ; LPC_ADDRESS[13]              ; REG_LCD_DATA[4]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.886     ;
-; 9.793  ; LPC_ADDRESS[13]              ; REG_LCD_DATA[6]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.886     ;
-; 9.793  ; LPC_ADDRESS[13]              ; REG_LCD_DATA[5]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.886     ;
-; 9.840  ; LPC_ADDRESS[13]              ; REG_LCD_DATA[3]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.839     ;
-; 9.840  ; LPC_ADDRESS[13]              ; REG_LCD_DATA[1]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.839     ;
-; 9.840  ; LPC_ADDRESS[13]              ; REG_LCD_DATA[2]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.839     ;
-; 9.842  ; LPC_ADDRESS[10]              ; READBUFFER[5]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.837     ;
-; 9.904  ; LPC_ADDRESS[5]               ; READBUFFER[7]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.775     ;
-; 9.906  ; LPC_ADDRESS[5]               ; READBUFFER[1]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.773     ;
-; 9.910  ; LPC_ADDRESS[5]               ; READBUFFER[4]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.769     ;
-; 9.911  ; LPC_ADDRESS[5]               ; READBUFFER[3]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.768     ;
-; 9.996  ; LPC_ADDRESS[14]              ; REG_LCD_DATA[4]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.683     ;
-; 9.996  ; LPC_ADDRESS[14]              ; REG_LCD_DATA[6]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.683     ;
-; 9.996  ; LPC_ADDRESS[14]              ; REG_LCD_DATA[5]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.683     ;
-; 10.017 ; LPC_ADDRESS[10]              ; REG_XBLAST_CONTROL[1] ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.662     ;
-; 10.017 ; LPC_ADDRESS[10]              ; REG_XBLAST_CONTROL[0] ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.662     ;
-; 10.043 ; LPC_ADDRESS[14]              ; REG_LCD_DATA[3]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.636     ;
-; 10.043 ; LPC_ADDRESS[14]              ; REG_LCD_DATA[1]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.636     ;
-; 10.043 ; LPC_ADDRESS[14]              ; REG_LCD_DATA[2]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.636     ;
-; 10.071 ; LPC_ADDRESS[5]               ; REG_LCD_DATA[4]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.608     ;
-; 10.071 ; LPC_ADDRESS[5]               ; REG_LCD_DATA[6]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.608     ;
-; 10.071 ; LPC_ADDRESS[5]               ; REG_LCD_DATA[5]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.608     ;
-; 10.091 ; LPC_ADDRESS[15]              ; READBUFFER[7]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.588     ;
-; 10.093 ; LPC_ADDRESS[15]              ; READBUFFER[1]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.586     ;
-; 10.097 ; LPC_ADDRESS[15]              ; READBUFFER[4]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.582     ;
-; 10.098 ; LPC_ADDRESS[15]              ; READBUFFER[3]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.581     ;
-; 10.118 ; LPC_ADDRESS[5]               ; REG_LCD_DATA[3]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.561     ;
-; 10.118 ; LPC_ADDRESS[5]               ; REG_LCD_DATA[1]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.561     ;
-; 10.118 ; LPC_ADDRESS[5]               ; REG_LCD_DATA[2]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.561     ;
-; 10.128 ; LPC_ADDRESS[7]               ; READBUFFER[7]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.551     ;
-; 10.130 ; LPC_ADDRESS[7]               ; READBUFFER[1]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.549     ;
-; 10.134 ; LPC_ADDRESS[7]               ; READBUFFER[4]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.545     ;
-; 10.135 ; LPC_ADDRESS[7]               ; READBUFFER[3]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.544     ;
-; 10.258 ; LPC_ADDRESS[15]              ; REG_LCD_DATA[4]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.421     ;
-; 10.258 ; LPC_ADDRESS[15]              ; REG_LCD_DATA[6]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.421     ;
-; 10.258 ; LPC_ADDRESS[15]              ; REG_LCD_DATA[5]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.421     ;
-; 10.295 ; LPC_ADDRESS[7]               ; REG_LCD_DATA[4]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.384     ;
-; 10.295 ; LPC_ADDRESS[7]               ; REG_LCD_DATA[6]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.384     ;
-; 10.295 ; LPC_ADDRESS[7]               ; REG_LCD_DATA[5]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.384     ;
-; 10.305 ; LPC_ADDRESS[15]              ; REG_LCD_DATA[3]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.374     ;
-; 10.305 ; LPC_ADDRESS[15]              ; REG_LCD_DATA[1]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.374     ;
-; 10.305 ; LPC_ADDRESS[15]              ; REG_LCD_DATA[2]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.374     ;
-; 10.327 ; LPC_ADDRESS[9]               ; READBUFFER[7]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.352     ;
-; 10.329 ; LPC_ADDRESS[9]               ; READBUFFER[1]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.350     ;
-; 10.333 ; LPC_ADDRESS[9]               ; READBUFFER[4]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.346     ;
-; 10.334 ; LPC_ADDRESS[9]               ; READBUFFER[3]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.345     ;
-; 10.342 ; LPC_ADDRESS[7]               ; REG_LCD_DATA[3]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.337     ;
-; 10.342 ; LPC_ADDRESS[7]               ; REG_LCD_DATA[1]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.337     ;
-; 10.342 ; LPC_ADDRESS[7]               ; REG_LCD_DATA[2]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.337     ;
-; 10.494 ; LPC_ADDRESS[9]               ; REG_LCD_DATA[4]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.185     ;
-; 10.494 ; LPC_ADDRESS[9]               ; REG_LCD_DATA[6]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.185     ;
-; 10.494 ; LPC_ADDRESS[9]               ; REG_LCD_DATA[5]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.185     ;
-; 10.541 ; LPC_ADDRESS[9]               ; REG_LCD_DATA[3]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.138     ;
-; 10.541 ; LPC_ADDRESS[9]               ; REG_LCD_DATA[1]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.138     ;
-; 10.541 ; LPC_ADDRESS[9]               ; REG_LCD_DATA[2]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.138     ;
-; 10.589 ; pwm:PW|cnt[10]_RTM13         ; pwm:PW|cnt[10]_RTM01  ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.090     ;
-; 10.658 ; LPC_ADDRESS[0]               ; READBUFFER[5]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.021     ;
-; 10.726 ; LPC_ADDRESS[10]              ; REG_LCD_DATA[4]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.953     ;
-; 10.726 ; LPC_ADDRESS[10]              ; REG_LCD_DATA[6]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.953     ;
-; 10.726 ; LPC_ADDRESS[10]              ; REG_LCD_DATA[5]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.953     ;
-; 10.773 ; LPC_ADDRESS[10]              ; REG_LCD_DATA[3]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.906     ;
-; 10.773 ; LPC_ADDRESS[10]              ; REG_LCD_DATA[1]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.906     ;
-; 10.773 ; LPC_ADDRESS[10]              ; REG_LCD_DATA[2]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.906     ;
-; 10.789 ; LPC_ADDRESS[13]              ; REG_XBLAST_CONTROL[1] ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.890     ;
-; 10.789 ; LPC_ADDRESS[13]              ; REG_XBLAST_CONTROL[0] ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.890     ;
-; 10.816 ; LPC_ADDRESS[0]               ; control_D0~reg0       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.863     ;
-; 10.992 ; LPC_ADDRESS[14]              ; REG_XBLAST_CONTROL[1] ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.687     ;
-; 10.992 ; LPC_ADDRESS[14]              ; REG_XBLAST_CONTROL[0] ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.687     ;
-; 11.010 ; LPC_ADDRESS[3]               ; READBUFFER[7]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.669     ;
-; 11.012 ; LPC_ADDRESS[3]               ; READBUFFER[1]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.667     ;
-; 11.016 ; LPC_ADDRESS[3]               ; READBUFFER[4]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.663     ;
-; 11.017 ; LPC_ADDRESS[3]               ; READBUFFER[3]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.662     ;
-; 11.020 ; LPC_CURRENT_STATE.WAIT_START ; control_D0~reg0       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.659     ;
-; 11.114 ; CYCLE_TYPE.MEM_READ          ; READBUFFER[0]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.565     ;
-; 11.114 ; CYCLE_TYPE.MEM_READ          ; READBUFFER[4]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.565     ;
-; 11.114 ; CYCLE_TYPE.MEM_READ          ; READBUFFER[1]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.565     ;
-+--------+------------------------------+-----------------------+--------------+-------------+--------------+------------+------------+
++------------------------------------------------------------------------------------------------------------------------+
+; Setup: 'LPC_CLK'                                                                                                       ;
++--------+-----------------+-----------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node       ; To Node               ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+-----------------+-----------------------+--------------+-------------+--------------+------------+------------+
+; 7.411  ; LPC_ADDRESS[10] ; READBUFFER[3]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 22.268     ;
+; 7.412  ; LPC_ADDRESS[10] ; READBUFFER[5]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 22.267     ;
+; 7.420  ; LPC_ADDRESS[10] ; READBUFFER[4]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 22.259     ;
+; 7.425  ; LPC_ADDRESS[10] ; READBUFFER[1]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 22.254     ;
+; 9.078  ; LPC_ADDRESS[10] ; READBUFFER[7]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 20.601     ;
+; 9.818  ; LPC_ADDRESS[3]  ; REG_LCD_DATA[3]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.861     ;
+; 9.818  ; LPC_ADDRESS[3]  ; REG_LCD_DATA[1]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.861     ;
+; 9.818  ; LPC_ADDRESS[3]  ; REG_LCD_DATA[2]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.861     ;
+; 9.829  ; LPC_ADDRESS[13] ; REG_LCD_DATA[3]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.850     ;
+; 9.829  ; LPC_ADDRESS[13] ; REG_LCD_DATA[1]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.850     ;
+; 9.829  ; LPC_ADDRESS[13] ; REG_LCD_DATA[2]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.850     ;
+; 10.032 ; LPC_ADDRESS[14] ; REG_LCD_DATA[3]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.647     ;
+; 10.032 ; LPC_ADDRESS[14] ; REG_LCD_DATA[1]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.647     ;
+; 10.032 ; LPC_ADDRESS[14] ; REG_LCD_DATA[2]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.647     ;
+; 10.337 ; LPC_ADDRESS[3]  ; REG_LCD_DATA[4]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.342     ;
+; 10.337 ; LPC_ADDRESS[3]  ; REG_LCD_DATA[6]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.342     ;
+; 10.337 ; LPC_ADDRESS[3]  ; REG_LCD_DATA[5]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.342     ;
+; 10.348 ; LPC_ADDRESS[13] ; REG_LCD_DATA[4]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.331     ;
+; 10.348 ; LPC_ADDRESS[13] ; REG_LCD_DATA[6]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.331     ;
+; 10.348 ; LPC_ADDRESS[13] ; REG_LCD_DATA[5]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.331     ;
+; 10.485 ; LPC_ADDRESS[4]  ; READBUFFER[3]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.194     ;
+; 10.486 ; LPC_ADDRESS[4]  ; READBUFFER[5]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.193     ;
+; 10.494 ; LPC_ADDRESS[4]  ; READBUFFER[4]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.185     ;
+; 10.499 ; LPC_ADDRESS[4]  ; READBUFFER[1]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.180     ;
+; 10.528 ; LPC_ADDRESS[9]  ; READBUFFER[3]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.151     ;
+; 10.529 ; LPC_ADDRESS[9]  ; READBUFFER[5]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.150     ;
+; 10.537 ; LPC_ADDRESS[9]  ; READBUFFER[4]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.142     ;
+; 10.542 ; LPC_ADDRESS[9]  ; READBUFFER[1]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.137     ;
+; 10.551 ; LPC_ADDRESS[14] ; REG_LCD_DATA[4]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.128     ;
+; 10.551 ; LPC_ADDRESS[14] ; REG_LCD_DATA[6]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.128     ;
+; 10.551 ; LPC_ADDRESS[14] ; REG_LCD_DATA[5]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 19.128     ;
+; 10.690 ; LPC_ADDRESS[0]  ; READBUFFER[3]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.989     ;
+; 10.691 ; LPC_ADDRESS[0]  ; READBUFFER[5]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.988     ;
+; 10.699 ; LPC_ADDRESS[0]  ; READBUFFER[4]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.980     ;
+; 10.704 ; LPC_ADDRESS[0]  ; READBUFFER[1]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.975     ;
+; 10.717 ; LPC_ADDRESS[2]  ; READBUFFER[3]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.962     ;
+; 10.718 ; LPC_ADDRESS[2]  ; READBUFFER[5]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.961     ;
+; 10.726 ; LPC_ADDRESS[2]  ; READBUFFER[4]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.953     ;
+; 10.731 ; LPC_ADDRESS[2]  ; READBUFFER[1]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.948     ;
+; 10.864 ; LPC_ADDRESS[3]  ; READBUFFER[3]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.815     ;
+; 10.865 ; LPC_ADDRESS[3]  ; READBUFFER[5]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.814     ;
+; 10.873 ; LPC_ADDRESS[3]  ; READBUFFER[4]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.806     ;
+; 10.878 ; LPC_ADDRESS[3]  ; READBUFFER[1]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.801     ;
+; 11.075 ; LPC_ADDRESS[8]  ; READBUFFER[3]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.604     ;
+; 11.076 ; LPC_ADDRESS[8]  ; READBUFFER[5]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.603     ;
+; 11.084 ; LPC_ADDRESS[8]  ; READBUFFER[4]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.595     ;
+; 11.089 ; LPC_ADDRESS[8]  ; READBUFFER[1]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.590     ;
+; 11.181 ; LPC_ADDRESS[6]  ; REG_LCD_DATA[3]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.498     ;
+; 11.181 ; LPC_ADDRESS[6]  ; REG_LCD_DATA[1]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.498     ;
+; 11.181 ; LPC_ADDRESS[6]  ; REG_LCD_DATA[2]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.498     ;
+; 11.315 ; LPC_ADDRESS[1]  ; REG_LCD_DATA[3]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.364     ;
+; 11.315 ; LPC_ADDRESS[1]  ; REG_LCD_DATA[1]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.364     ;
+; 11.315 ; LPC_ADDRESS[1]  ; REG_LCD_DATA[2]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.364     ;
+; 11.410 ; LPC_ADDRESS[13] ; READBUFFER[3]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.269     ;
+; 11.411 ; LPC_ADDRESS[13] ; READBUFFER[5]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.268     ;
+; 11.419 ; LPC_ADDRESS[13] ; READBUFFER[4]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.260     ;
+; 11.424 ; LPC_ADDRESS[13] ; READBUFFER[1]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.255     ;
+; 11.434 ; LPC_ADDRESS[6]  ; REG_XBLAST_CONTROL[1] ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.245     ;
+; 11.434 ; LPC_ADDRESS[6]  ; REG_XBLAST_CONTROL[0] ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.245     ;
+; 11.455 ; LPC_ADDRESS[15] ; REG_LCD_DATA[3]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.224     ;
+; 11.455 ; LPC_ADDRESS[15] ; REG_LCD_DATA[1]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.224     ;
+; 11.455 ; LPC_ADDRESS[15] ; REG_LCD_DATA[2]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.224     ;
+; 11.522 ; LPC_ADDRESS[12] ; READBUFFER[3]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.157     ;
+; 11.523 ; LPC_ADDRESS[12] ; READBUFFER[5]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.156     ;
+; 11.531 ; LPC_ADDRESS[12] ; READBUFFER[4]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.148     ;
+; 11.536 ; LPC_ADDRESS[12] ; READBUFFER[1]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 18.143     ;
+; 11.700 ; LPC_ADDRESS[6]  ; REG_LCD_DATA[4]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.979     ;
+; 11.700 ; LPC_ADDRESS[6]  ; REG_LCD_DATA[6]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.979     ;
+; 11.700 ; LPC_ADDRESS[6]  ; REG_LCD_DATA[5]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.979     ;
+; 11.814 ; LPC_ADDRESS[10] ; REG_LCD_DATA[3]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.865     ;
+; 11.814 ; LPC_ADDRESS[10] ; REG_LCD_DATA[1]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.865     ;
+; 11.814 ; LPC_ADDRESS[10] ; REG_LCD_DATA[2]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.865     ;
+; 11.834 ; LPC_ADDRESS[1]  ; REG_LCD_DATA[4]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.845     ;
+; 11.834 ; LPC_ADDRESS[1]  ; REG_LCD_DATA[6]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.845     ;
+; 11.834 ; LPC_ADDRESS[1]  ; REG_LCD_DATA[5]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.845     ;
+; 11.974 ; LPC_ADDRESS[15] ; REG_LCD_DATA[4]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.705     ;
+; 11.974 ; LPC_ADDRESS[15] ; REG_LCD_DATA[6]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.705     ;
+; 11.974 ; LPC_ADDRESS[15] ; REG_LCD_DATA[5]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.705     ;
+; 12.001 ; LPC_ADDRESS[11] ; REG_LCD_DATA[3]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.678     ;
+; 12.001 ; LPC_ADDRESS[11] ; REG_LCD_DATA[1]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.678     ;
+; 12.001 ; LPC_ADDRESS[11] ; REG_LCD_DATA[2]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.678     ;
+; 12.007 ; LPC_ADDRESS[14] ; READBUFFER[3]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.672     ;
+; 12.008 ; LPC_ADDRESS[14] ; READBUFFER[5]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.671     ;
+; 12.016 ; LPC_ADDRESS[14] ; READBUFFER[4]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.663     ;
+; 12.021 ; LPC_ADDRESS[14] ; READBUFFER[1]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.658     ;
+; 12.119 ; COUNT[1]        ; LPC_ADDRESS[9]        ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.560     ;
+; 12.119 ; COUNT[1]        ; LPC_ADDRESS[10]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.560     ;
+; 12.119 ; COUNT[1]        ; LPC_ADDRESS[11]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.560     ;
+; 12.119 ; COUNT[1]        ; LPC_ADDRESS[8]        ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.560     ;
+; 12.152 ; LPC_ADDRESS[4]  ; READBUFFER[7]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.527     ;
+; 12.195 ; LPC_ADDRESS[9]  ; READBUFFER[7]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.484     ;
+; 12.243 ; LPC_ADDRESS[6]  ; READBUFFER[3]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.436     ;
+; 12.244 ; LPC_ADDRESS[6]  ; READBUFFER[5]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.435     ;
+; 12.252 ; LPC_ADDRESS[6]  ; READBUFFER[4]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.427     ;
+; 12.257 ; LPC_ADDRESS[6]  ; READBUFFER[1]         ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.422     ;
+; 12.280 ; LPC_ADDRESS[13] ; REG_XBLAST_CONTROL[1] ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.399     ;
+; 12.280 ; LPC_ADDRESS[13] ; REG_XBLAST_CONTROL[0] ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.399     ;
+; 12.333 ; LPC_ADDRESS[10] ; REG_LCD_DATA[4]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.346     ;
+; 12.333 ; LPC_ADDRESS[10] ; REG_LCD_DATA[6]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.346     ;
+; 12.333 ; LPC_ADDRESS[10] ; REG_LCD_DATA[5]       ; LPC_CLK      ; LPC_CLK     ; 30.000       ; 0.000      ; 17.346     ;
++--------+-----------------+-----------------------+--------------+-------------+--------------+------------+------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------+
-; Hold: 'LPC_CLK'                                                                                                                                 ;
-+-------+---------------------------------+---------------------------------+--------------+-------------+--------------+------------+------------+
-; Slack ; From Node                       ; To Node                         ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
-+-------+---------------------------------+---------------------------------+--------------+-------------+--------------+------------+------------+
-; 2.440 ; LPC_CURRENT_STATE.TAR2          ; COUNT[0]                        ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 2.479      ;
-; 3.104 ; LPC_CURRENT_STATE.WRITE_DATA0   ; LPC_CURRENT_STATE.WRITE_DATA1   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 3.143      ;
-; 3.169 ; LPC_CURRENT_STATE.READ_DATA0    ; LPC_CURRENT_STATE.READ_DATA1    ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 3.208      ;
-; 3.376 ; LPC_CURRENT_STATE.WAIT_START    ; LPC_CURRENT_STATE.CYCTYPE_DIR   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 3.415      ;
-; 3.455 ; REG_XBLAST_CONTROL[1]           ; LPC_ADDRESS[19]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 3.494      ;
-; 3.456 ; REG_XBLAST_CONTROL[1]           ; LPC_ADDRESS[18]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 3.495      ;
-; 4.345 ; LPC_CURRENT_STATE.SYNC          ; COUNT[0]                        ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 4.384      ;
-; 4.958 ; COUNT[0]                        ; COUNT[0]                        ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 4.997      ;
-; 4.969 ; COUNT[0]                        ; LPC_CURRENT_STATE.SYNC_COMPLETE ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.008      ;
-; 5.242 ; control_D0~reg0                 ; control_D0~reg0                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.281      ;
-; 5.261 ; LPC_CURRENT_STATE.READ_DATA1    ; LPC_CURRENT_STATE.TAR_EXIT      ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.300      ;
-; 5.280 ; COUNT[2]                        ; COUNT[2]                        ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.319      ;
-; 5.305 ; LPC_CURRENT_STATE.TAR2          ; LPC_CURRENT_STATE.SYNC          ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.344      ;
-; 5.319 ; REG_XBLAST_CONTROL[0]           ; LPC_ADDRESS[18]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.358      ;
-; 5.320 ; REG_XBLAST_CONTROL[0]           ; LPC_ADDRESS[19]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.359      ;
-; 5.422 ; LPC_CURRENT_STATE.WRITE_DATA1   ; REG_LCD_DATA[4]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.461      ;
-; 5.422 ; LPC_CURRENT_STATE.WRITE_DATA1   ; REG_LCD_DATA[6]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.461      ;
-; 5.422 ; LPC_CURRENT_STATE.WRITE_DATA1   ; REG_LCD_DATA[5]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.461      ;
-; 5.450 ; LPC_CURRENT_STATE.WAIT_START    ; LPC_CURRENT_STATE.WAIT_START    ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.489      ;
-; 5.453 ; COUNT[1]                        ; COUNT[1]                        ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.492      ;
-; 5.583 ; LPC_CURRENT_STATE.SYNC          ; LPC_CURRENT_STATE.SYNC          ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.622      ;
-; 5.585 ; LPC_CURRENT_STATE.SYNC          ; LPC_CURRENT_STATE.SYNC_COMPLETE ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.624      ;
-; 5.782 ; LPC_CURRENT_STATE.ADDRESS       ; LPC_CURRENT_STATE.WAIT_START    ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.821      ;
-; 5.878 ; LPC_ADDRESS[20]                 ; LPC_ADDRESS[20]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.917      ;
-; 6.150 ; LPC_CURRENT_STATE.WAIT_START    ; control_D0~reg0                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.189      ;
-; 6.371 ; LPC_CURRENT_STATE.CYCTYPE_DIR   ; LPC_CURRENT_STATE.ADDRESS       ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.410      ;
-; 6.412 ; CYCLE_TYPE.MEM_WRITE            ; LPC_CURRENT_STATE.WRITE_DATA0   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.451      ;
-; 6.430 ; CYCLE_TYPE.IO_READ              ; LPC_CURRENT_STATE.TAR1          ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.469      ;
-; 6.438 ; LPC_CURRENT_STATE.CYCTYPE_DIR   ; COUNT[0]                        ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.477      ;
-; 6.542 ; LPC_CURRENT_STATE.WRITE_DATA1   ; LPC_CURRENT_STATE.TAR1          ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.581      ;
-; 6.587 ; LPC_CURRENT_STATE.SYNC_COMPLETE ; LPC_CURRENT_STATE.READ_DATA0    ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.626      ;
-; 6.664 ; pwm:PW|cnt[0]                   ; pwm:PW|cnt[10]_RTM01            ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.703      ;
-; 6.774 ; pwm:PW|cnt[7]                   ; pwm:PW|cnt[10]_RTM13            ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.813      ;
-; 6.796 ; pwm:PW|cnt[3]                   ; pwm:PW|cnt[10]_RTM02            ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.835      ;
-; 6.905 ; pwm:PW|cnt[6]                   ; pwm:PW|cnt[10]_RTM13            ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.944      ;
-; 6.995 ; pwm:PW|cnt[0]                   ; pwm:PW|cnt[0]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.034      ;
-; 7.019 ; pwm:PW|cnt[2]                   ; pwm:PW|cnt[2]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.058      ;
-; 7.019 ; pwm:PW|cnt[1]                   ; pwm:PW|cnt[1]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.058      ;
-; 7.134 ; LPC_CURRENT_STATE.ADDRESS       ; COUNT[0]                        ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.173      ;
-; 7.260 ; pwm:PW|cnt[5]                   ; pwm:PW|cnt[5]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.299      ;
-; 7.278 ; LPC_CURRENT_STATE.CYCTYPE_DIR   ; LPC_CURRENT_STATE.WAIT_START    ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.317      ;
-; 7.288 ; pwm:PW|cnt[2]                   ; pwm:PW|cnt[10]_RTM13            ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.327      ;
-; 7.391 ; LPC_CURRENT_STATE.ADDRESS       ; control_D0~reg0                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.430      ;
-; 7.419 ; pwm:PW|cnt[1]                   ; pwm:PW|cnt[10]_RTM13            ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.458      ;
-; 7.474 ; pwm:PW|cnt[4]                   ; pwm:PW|cnt[4]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.513      ;
-; 7.538 ; pwm:PW|cnt[0]                   ; pwm:PW|cnt[10]_RTM13            ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.577      ;
-; 7.555 ; pwm:PW|cnt[5]                   ; pwm:PW|cnt[10]_RTM13            ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.594      ;
-; 7.557 ; pwm:PW|cnt[3]                   ; pwm:PW|cnt[10]_RTM13            ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.596      ;
-; 7.586 ; pwm:PW|cnt[0]                   ; pwm:PW|cnt[8]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.625      ;
-; 7.749 ; pwm:PW|cnt[4]                   ; pwm:PW|cnt[10]_RTM13            ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.788      ;
-; 7.843 ; LPC_CURRENT_STATE.TAR1          ; LPC_CURRENT_STATE.TAR2          ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.882      ;
-; 7.845 ; pwm:PW|cnt[9]                   ; pwm:PW|cnt[10]_RTM13            ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.884      ;
-; 7.965 ; pwm:PW|cnt[0]                   ; pwm:PW|cnt[1]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.004      ;
-; 7.977 ; pwm:PW|cnt[1]                   ; pwm:PW|cnt[2]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.016      ;
-; 7.997 ; COUNT[0]                        ; LPC_CURRENT_STATE.SYNC          ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.036      ;
-; 8.050 ; pwm:PW|cnt[6]                   ; pwm:PW|cnt[6]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.089      ;
-; 8.056 ; pwm:PW|cnt[9]                   ; pwm:PW|cnt[9]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.095      ;
-; 8.063 ; pwm:PW|cnt[7]                   ; pwm:PW|cnt[7]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.102      ;
-; 8.096 ; pwm:PW|cnt[0]                   ; pwm:PW|cnt[2]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.135      ;
-; 8.142 ; pwm:PW|cnt[7]                   ; pwm:PW|cnt[9]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.181      ;
-; 8.210 ; COUNT[1]                        ; LPC_ADDRESS[10]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.249      ;
-; 8.210 ; COUNT[1]                        ; LPC_ADDRESS[11]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.249      ;
-; 8.210 ; COUNT[1]                        ; LPC_ADDRESS[9]                  ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.249      ;
-; 8.210 ; COUNT[1]                        ; LPC_ADDRESS[8]                  ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.249      ;
-; 8.273 ; pwm:PW|cnt[6]                   ; pwm:PW|cnt[9]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.312      ;
-; 8.374 ; CYCLE_TYPE.IO_WRITE             ; LPC_CURRENT_STATE.WRITE_DATA0   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.413      ;
-; 8.377 ; LPC_CURRENT_STATE.SYNC_COMPLETE ; LPC_CURRENT_STATE.TAR_EXIT      ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.416      ;
-; 8.404 ; pwm:PW|cnt[2]                   ; pwm:PW|cnt[4]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.443      ;
-; 8.535 ; pwm:PW|cnt[1]                   ; pwm:PW|cnt[4]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.574      ;
-; 8.576 ; COUNT[2]                        ; LPC_CURRENT_STATE.SYNC          ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.615      ;
-; 8.576 ; CYCLE_TYPE.IO_READ              ; LPC_CURRENT_STATE.READ_DATA0    ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.615      ;
-; 8.586 ; CYCLE_TYPE.IO_READ              ; LPC_CURRENT_STATE.TAR_EXIT      ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.625      ;
-; 8.642 ; LPC_ADDRESS[0]                  ; REG_LCD_DATA[3]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.681      ;
-; 8.642 ; LPC_ADDRESS[0]                  ; REG_LCD_DATA[1]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.681      ;
-; 8.642 ; LPC_ADDRESS[0]                  ; REG_LCD_DATA[2]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.681      ;
-; 8.654 ; pwm:PW|cnt[0]                   ; pwm:PW|cnt[4]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.693      ;
-; 8.673 ; pwm:PW|cnt[3]                   ; pwm:PW|cnt[4]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.712      ;
-; 8.834 ; LPC_CURRENT_STATE.CYCTYPE_DIR   ; CYCLE_TYPE.IO_WRITE             ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.873      ;
-; 8.843 ; LPC_CURRENT_STATE.CYCTYPE_DIR   ; CYCLE_TYPE.MEM_READ             ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.882      ;
-; 8.844 ; LPC_CURRENT_STATE.CYCTYPE_DIR   ; CYCLE_TYPE.MEM_WRITE            ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.883      ;
-; 8.844 ; LPC_CURRENT_STATE.CYCTYPE_DIR   ; CYCLE_TYPE.IO_READ              ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.883      ;
-; 8.848 ; COUNT[0]                        ; LPC_ADDRESS[20]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.887      ;
-; 8.884 ; COUNT[1]                        ; LPC_CURRENT_STATE.SYNC_COMPLETE ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.923      ;
-; 8.923 ; pwm:PW|cnt[5]                   ; pwm:PW|cnt[9]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.962      ;
-; 8.941 ; pwm:PW|cnt[3]                   ; pwm:PW|cnt[8]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.980      ;
-; 9.021 ; pwm:PW|cnt[6]                   ; pwm:PW|cnt[7]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.060      ;
-; 9.066 ; COUNT[0]                        ; LPC_CURRENT_STATE.ADDRESS       ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.105      ;
-; 9.111 ; pwm:PW|cnt[2]                   ; pwm:PW|cnt[5]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.150      ;
-; 9.118 ; pwm:PW|cnt[2]                   ; pwm:PW|cnt[9]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.157      ;
-; 9.242 ; pwm:PW|cnt[1]                   ; pwm:PW|cnt[5]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.281      ;
-; 9.249 ; REG_XBLAST_CONTROL[1]           ; LPC_CURRENT_STATE.WAIT_START    ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.288      ;
-; 9.249 ; pwm:PW|cnt[1]                   ; pwm:PW|cnt[9]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.288      ;
-; 9.316 ; LPC_CURRENT_STATE.SYNC          ; COUNT[1]                        ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.355      ;
-; 9.361 ; pwm:PW|cnt[0]                   ; pwm:PW|cnt[5]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.400      ;
-; 9.368 ; pwm:PW|cnt[0]                   ; pwm:PW|cnt[9]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.407      ;
-; 9.380 ; pwm:PW|cnt[3]                   ; pwm:PW|cnt[5]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.419      ;
-; 9.387 ; pwm:PW|cnt[3]                   ; pwm:PW|cnt[9]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.426      ;
-; 9.487 ; COUNT[0]                        ; LPC_CURRENT_STATE.WAIT_START    ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.526      ;
-; 9.527 ; pwm:PW|cnt[5]                   ; pwm:PW|cnt[6]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.566      ;
-; 9.572 ; pwm:PW|cnt[4]                   ; pwm:PW|cnt[5]                   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.611      ;
-+-------+---------------------------------+---------------------------------+--------------+-------------+--------------+------------+------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Hold: 'LPC_CLK'                                                                                                                               ;
++-------+---------------------------------+-------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                       ; To Node                       ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+---------------------------------+-------------------------------+--------------+-------------+--------------+------------+------------+
+; 2.440 ; pwm:PW|cnt[3]                   ; pwm:PW|cnt[8]_RTM19_RTM012    ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 2.479      ;
+; 3.105 ; LPC_CURRENT_STATE.WRITE_DATA0   ; LPC_CURRENT_STATE.WRITE_DATA1 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 3.144      ;
+; 3.169 ; LPC_CURRENT_STATE.READ_DATA0    ; LPC_CURRENT_STATE.READ_DATA1  ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 3.208      ;
+; 3.393 ; LPC_CURRENT_STATE.WAIT_START    ; LPC_CURRENT_STATE.CYCTYPE_DIR ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 3.432      ;
+; 4.246 ; LPC_CURRENT_STATE.TAR1          ; LPC_CURRENT_STATE.TAR2        ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 4.285      ;
+; 4.886 ; LPC_CURRENT_STATE.TAR2          ; LPC_CURRENT_STATE.SYNC        ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 4.925      ;
+; 4.942 ; COUNT[0]                        ; COUNT[2]                      ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 4.981      ;
+; 5.075 ; pwm:PW|cnt[3]                   ; pwm:PW|cnt[10]_RTM17_RTM013   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.114      ;
+; 5.242 ; pwm:PW|cnt[4]_RTM11             ; pwm:PW|cnt[4]_RTM11           ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.281      ;
+; 5.279 ; LPC_CURRENT_STATE.SYNC          ; LPC_CURRENT_STATE.SYNC        ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.318      ;
+; 5.287 ; pwm:PW|cnt[5]_RTM13             ; pwm:PW|cnt[5]_RTM13           ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.326      ;
+; 5.320 ; COUNT[0]                        ; COUNT[0]                      ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.359      ;
+; 5.391 ; LPC_CURRENT_STATE.WRITE_DATA1   ; REG_LCD_DATA[4]               ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.430      ;
+; 5.391 ; LPC_CURRENT_STATE.WRITE_DATA1   ; REG_LCD_DATA[6]               ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.430      ;
+; 5.391 ; LPC_CURRENT_STATE.WRITE_DATA1   ; REG_LCD_DATA[5]               ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.430      ;
+; 5.459 ; LPC_CURRENT_STATE.READ_DATA1    ; LPC_CURRENT_STATE.TAR_EXIT    ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.498      ;
+; 5.464 ; LPC_CURRENT_STATE.ADDRESS       ; LPC_CURRENT_STATE.ADDRESS     ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.503      ;
+; 5.689 ; LPC_ADDRESS[20]                 ; LPC_ADDRESS[20]               ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.728      ;
+; 5.702 ; pwm:PW|cnt[2]                   ; pwm:PW|cnt[8]_RTM19_RTM012    ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.741      ;
+; 5.709 ; COUNT[2]                        ; COUNT[2]                      ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.748      ;
+; 5.881 ; pwm:PW|cnt[7]                   ; pwm:PW|cnt[8]_RTM19_RTM012    ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 5.920      ;
+; 6.140 ; pwm:PW|cnt[2]                   ; pwm:PW|cnt[4]_RTM11           ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.179      ;
+; 6.170 ; pwm:PW|cnt[10]_RTM17_RTM013     ; pwm:PW|cnt[10]_RTM17_RTM013   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.209      ;
+; 6.269 ; pwm:PW|cnt[1]                   ; pwm:PW|cnt[4]_RTM11           ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.308      ;
+; 6.350 ; LPC_CURRENT_STATE.ADDRESS       ; LPC_CURRENT_STATE.WAIT_START  ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.389      ;
+; 6.383 ; CYCLE_TYPE.MEM_READ             ; LPC_CURRENT_STATE.TAR1        ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.422      ;
+; 6.414 ; pwm:PW|cnt[0]                   ; pwm:PW|cnt[4]_RTM11           ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.453      ;
+; 6.532 ; LPC_CURRENT_STATE.CYCTYPE_DIR   ; CYCLE_TYPE.MEM_READ           ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.571      ;
+; 6.533 ; LPC_CURRENT_STATE.CYCTYPE_DIR   ; CYCLE_TYPE.IO_READ            ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.572      ;
+; 6.534 ; LPC_CURRENT_STATE.CYCTYPE_DIR   ; CYCLE_TYPE.IO_WRITE           ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.573      ;
+; 6.536 ; LPC_CURRENT_STATE.CYCTYPE_DIR   ; CYCLE_TYPE.MEM_WRITE          ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.575      ;
+; 6.588 ; CYCLE_TYPE.IO_READ              ; LPC_CURRENT_STATE.TAR1        ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.627      ;
+; 6.604 ; REG_XBLAST_CONTROL[0]           ; LPC_ADDRESS[18]               ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.643      ;
+; 6.606 ; REG_XBLAST_CONTROL[0]           ; LPC_ADDRESS[19]               ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.645      ;
+; 6.641 ; CYCLE_TYPE.IO_READ              ; LPC_CURRENT_STATE.READ_DATA0  ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.680      ;
+; 6.643 ; CYCLE_TYPE.IO_READ              ; READBUFFER[6]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.682      ;
+; 6.646 ; CYCLE_TYPE.IO_READ              ; READBUFFER[2]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.685      ;
+; 6.781 ; REG_XBLAST_CONTROL[1]           ; LPC_ADDRESS[19]               ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.820      ;
+; 6.784 ; REG_XBLAST_CONTROL[1]           ; LPC_ADDRESS[18]               ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 6.823      ;
+; 6.967 ; pwm:PW|cnt[0]                   ; pwm:PW|cnt[8]_RTM19_RTM012    ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.006      ;
+; 6.991 ; CYCLE_TYPE.MEM_READ             ; LPC_CURRENT_STATE.TAR_EXIT    ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.030      ;
+; 7.005 ; pwm:PW|cnt[1]                   ; pwm:PW|cnt[1]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.044      ;
+; 7.007 ; pwm:PW|cnt[0]                   ; pwm:PW|cnt[0]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.046      ;
+; 7.011 ; pwm:PW|cnt[1]                   ; pwm:PW|cnt[8]_RTM19_RTM012    ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.050      ;
+; 7.022 ; pwm:PW|cnt[2]                   ; pwm:PW|cnt[2]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.061      ;
+; 7.051 ; COUNT[1]                        ; COUNT[2]                      ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.090      ;
+; 7.053 ; CYCLE_TYPE.IO_READ              ; READBUFFER[5]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.092      ;
+; 7.056 ; CYCLE_TYPE.IO_READ              ; READBUFFER[0]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.095      ;
+; 7.141 ; pwm:PW|cnt[0]                   ; pwm:PW|cnt[10]_RTM17_RTM013   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.180      ;
+; 7.176 ; pwm:PW|cnt[2]                   ; pwm:PW|cnt[5]_RTM13           ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.215      ;
+; 7.275 ; LPC_CURRENT_STATE.ADDRESS       ; LPC_ADDRESS[20]               ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.314      ;
+; 7.287 ; LPC_CURRENT_STATE.SYNC_COMPLETE ; LPC_CURRENT_STATE.TAR_EXIT    ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.326      ;
+; 7.291 ; LPC_CURRENT_STATE.SYNC_COMPLETE ; LPC_CURRENT_STATE.READ_DATA0  ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.330      ;
+; 7.305 ; pwm:PW|cnt[1]                   ; pwm:PW|cnt[5]_RTM13           ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.344      ;
+; 7.389 ; pwm:PW|cnt[4]_RTM11             ; pwm:PW|cnt[5]_RTM13           ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.428      ;
+; 7.450 ; pwm:PW|cnt[0]                   ; pwm:PW|cnt[5]_RTM13           ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.489      ;
+; 7.556 ; pwm:PW|cnt[3]                   ; pwm:PW|cnt[4]_RTM11           ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.595      ;
+; 7.574 ; COUNT[1]                        ; COUNT[1]                      ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.613      ;
+; 7.875 ; LPC_CURRENT_STATE.CYCTYPE_DIR   ; LPC_CURRENT_STATE.WAIT_START  ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 7.914      ;
+; 7.977 ; pwm:PW|cnt[0]                   ; pwm:PW|cnt[1]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.016      ;
+; 7.978 ; pwm:PW|cnt[1]                   ; pwm:PW|cnt[2]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.017      ;
+; 8.104 ; pwm:PW|cnt[9]                   ; pwm:PW|cnt[9]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.143      ;
+; 8.114 ; pwm:PW|cnt[7]                   ; pwm:PW|cnt[7]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.153      ;
+; 8.123 ; pwm:PW|cnt[0]                   ; pwm:PW|cnt[2]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.162      ;
+; 8.166 ; pwm:PW|cnt[7]                   ; pwm:PW|cnt[9]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.205      ;
+; 8.218 ; LPC_CURRENT_STATE.TAR_EXIT      ; LPC_CURRENT_STATE.WAIT_START  ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.257      ;
+; 8.291 ; pwm:PW|cnt[6]                   ; pwm:PW|cnt[6]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.330      ;
+; 8.337 ; pwm:PW|cnt[2]                   ; pwm:PW|cnt[10]_RTM17_RTM013   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.376      ;
+; 8.458 ; pwm:PW|cnt[5]_RTM13             ; pwm:PW|cnt[9]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.497      ;
+; 8.510 ; LPC_ADDRESS[4]                  ; READBUFFER[7]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.549      ;
+; 8.516 ; pwm:PW|cnt[7]                   ; pwm:PW|cnt[10]_RTM17_RTM013   ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.555      ;
+; 8.517 ; CYCLE_TYPE.IO_READ              ; LPC_CURRENT_STATE.TAR_EXIT    ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.556      ;
+; 8.592 ; pwm:PW|cnt[3]                   ; pwm:PW|cnt[5]_RTM13           ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.631      ;
+; 8.644 ; CYCLE_TYPE.IO_WRITE             ; REG_LCD_DATA[3]               ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.683      ;
+; 8.644 ; CYCLE_TYPE.IO_WRITE             ; REG_LCD_DATA[1]               ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.683      ;
+; 8.644 ; CYCLE_TYPE.IO_WRITE             ; REG_LCD_DATA[2]               ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.683      ;
+; 8.726 ; CYCLE_TYPE.IO_READ              ; READBUFFER[3]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.765      ;
+; 8.734 ; CYCLE_TYPE.MEM_READ             ; COUNT[1]                      ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.773      ;
+; 8.741 ; CYCLE_TYPE.IO_READ              ; READBUFFER[4]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.780      ;
+; 8.742 ; CYCLE_TYPE.IO_READ              ; READBUFFER[7]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.781      ;
+; 8.744 ; CYCLE_TYPE.IO_READ              ; READBUFFER[1]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.783      ;
+; 8.766 ; pwm:PW|cnt[6]                   ; pwm:PW|cnt[9]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 8.805      ;
+; 8.985 ; COUNT[0]                        ; LPC_ADDRESS[20]               ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.024      ;
+; 9.061 ; CYCLE_TYPE.MEM_READ             ; LPC_CURRENT_STATE.READ_DATA0  ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.100      ;
+; 9.063 ; pwm:PW|cnt[5]_RTM13             ; pwm:PW|cnt[6]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.102      ;
+; 9.106 ; pwm:PW|cnt[2]                   ; pwm:PW|cnt[9]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.145      ;
+; 9.132 ; COUNT[2]                        ; LPC_CURRENT_STATE.SYNC        ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.171      ;
+; 9.195 ; pwm:PW|cnt[5]_RTM13             ; pwm:PW|cnt[8]_RTM19_RTM012    ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.234      ;
+; 9.233 ; pwm:PW|cnt[5]_RTM13             ; pwm:PW|cnt[7]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.272      ;
+; 9.235 ; pwm:PW|cnt[1]                   ; pwm:PW|cnt[9]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.274      ;
+; 9.263 ; LPC_CURRENT_STATE.TAR2          ; COUNT[1]                      ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.302      ;
+; 9.275 ; LPC_CURRENT_STATE.CYCTYPE_DIR   ; COUNT[0]                      ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.314      ;
+; 9.277 ; LPC_CURRENT_STATE.CYCTYPE_DIR   ; COUNT[1]                      ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.316      ;
+; 9.319 ; pwm:PW|cnt[4]_RTM11             ; pwm:PW|cnt[9]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.358      ;
+; 9.351 ; LPC_CURRENT_STATE.WAIT_START    ; LPC_CURRENT_STATE.WAIT_START  ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.390      ;
+; 9.367 ; pwm:PW|cnt[6]                   ; pwm:PW|cnt[8]_RTM19_RTM012    ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.406      ;
+; 9.380 ; pwm:PW|cnt[0]                   ; pwm:PW|cnt[9]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.419      ;
+; 9.402 ; COUNT[0]                        ; COUNT[1]                      ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.441      ;
+; 9.541 ; pwm:PW|cnt[6]                   ; pwm:PW|cnt[7]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.580      ;
+; 9.631 ; LPC_ADDRESS[11]                 ; READBUFFER[7]                 ; LPC_CLK      ; LPC_CLK     ; 0.000        ; 0.000      ; 9.670      ;
++-------+---------------------------------+-------------------------------+--------------+-------------+--------------+------------+------------+
 
 
 +-------------------------------------------------------------------+
@@ -372,7 +371,7 @@ No paths to report.
 +------------+----------+----------+----------+----------+----------+
 ; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +------------+----------+----------+----------+----------+----------+
-; LPC_CLK    ; LPC_CLK  ; 859      ; 0        ; 0        ; 0        ;
+; LPC_CLK    ; LPC_CLK  ; 718      ; 0        ; 0        ; 0        ;
 +------------+----------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -382,7 +381,7 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 +------------+----------+----------+----------+----------+----------+
 ; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +------------+----------+----------+----------+----------+----------+
-; LPC_CLK    ; LPC_CLK  ; 859      ; 0        ; 0        ; 0        ;
+; LPC_CLK    ; LPC_CLK  ; 718      ; 0        ; 0        ; 0        ;
 +------------+----------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -407,8 +406,8 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
 ; Unconstrained Input Ports       ; 13    ; 13   ;
-; Unconstrained Input Port Paths  ; 139   ; 139  ;
-; Unconstrained Output Ports      ; 43    ; 43   ;
+; Unconstrained Input Port Paths  ; 134   ; 134  ;
+; Unconstrained Output Ports      ; 45    ; 45   ;
 ; Unconstrained Output Port Paths ; 96    ; 96   ;
 +---------------------------------+-------+------+
 
@@ -486,11 +485,13 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; LCD_OUT_DATA[2]   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LCD_OUT_DATA[3]   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LCD_RS            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED_B             ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED_G             ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED_R             ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LPC_LAD[0]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LPC_LAD[1]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LPC_LAD[2]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LPC_LAD[3]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; control_D0        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 +-------------------+---------------------------------------------------------------------------------------+
 
 
@@ -558,11 +559,13 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; LCD_OUT_DATA[2]   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LCD_OUT_DATA[3]   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LCD_RS            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED_B             ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED_G             ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED_R             ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LPC_LAD[0]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LPC_LAD[1]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LPC_LAD[2]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LPC_LAD[3]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; control_D0        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 +-------------------+---------------------------------------------------------------------------------------+
 
 
@@ -572,7 +575,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Fri Dec 20 06:07:25 2019
+    Info: Processing started: Thu Jan 02 16:15:09 2020
 Info: Command: quartus_sta maxV_chip -c maxV_chip
 Info: qsta_default_script.tcl version: #1
 Info (20032): Parallel compilation is enabled and will use up to 4 processors
@@ -583,10 +586,10 @@ Info (334004): Delay annotation completed successfully
 Info (332104): Reading SDC File: 'maxV_chip.sdc'
 Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Can't run Report Timing Closure Recommendations. The current device family is not supported.
-Info (332146): Worst-case setup slack is 7.224
+Info (332146): Worst-case setup slack is 7.411
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     7.224               0.000 LPC_CLK 
+    Info (332119):     7.411               0.000 LPC_CLK 
 Info (332146): Worst-case hold slack is 2.440
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
@@ -600,10 +603,10 @@ Info (332146): Worst-case minimum pulse width slack is 14.661
 Info (332001): The selected device family is not supported by the report_metastability command.
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
-Info (144001): Generated suppressed messages file C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/output_files/maxV_chip.sta.smsg
+Info (144001): Generated suppressed messages file C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/output_files/maxV_chip.sta.smsg
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 0 warnings
     Info: Peak virtual memory: 4677 megabytes
-    Info: Processing ended: Fri Dec 20 06:07:26 2019
+    Info: Processing ended: Thu Jan 02 16:15:10 2020
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 
@@ -611,6 +614,6 @@ Info: Quartus Prime Timing Analyzer was successful. 0 errors, 0 warnings
 +-------------------------------------+
 ; Timing Analyzer Suppressed Messages ;
 +-------------------------------------+
-The suppressed messages can be found in C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/output_files/maxV_chip.sta.smsg.
+The suppressed messages can be found in C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/output_files/maxV_chip.sta.smsg.
 
 

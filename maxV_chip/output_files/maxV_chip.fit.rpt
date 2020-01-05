@@ -1,5 +1,5 @@
 Fitter report for maxV_chip
-Fri Dec 20 06:07:23 2019
+Thu Jan 02 16:15:06 2020
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -57,14 +57,14 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------------+
 ; Fitter Summary                                                      ;
 +-----------------------+---------------------------------------------+
-; Fitter Status         ; Successful - Fri Dec 20 06:07:23 2019       ;
+; Fitter Status         ; Successful - Thu Jan 02 16:15:06 2020       ;
 ; Quartus Prime Version ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name         ; maxV_chip                                   ;
 ; Top-level Entity Name ; MAXV_CHIP                                   ;
 ; Family                ; MAX V                                       ;
 ; Device                ; 5M160ZE64C5                                 ;
 ; Timing Models         ; Final                                       ;
-; Total logic elements  ; 138 / 160 ( 86 % )                          ;
+; Total logic elements  ; 135 / 160 ( 84 % )                          ;
 ; Total pins            ; 49 / 54 ( 91 % )                            ;
 ; Total virtual pins    ; 0                                           ;
 ; UFM blocks            ; 0 / 1 ( 0 % )                               ;
@@ -134,27 +134,33 @@ refer to the applicable agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   1.3%      ;
-;     Processors 3-4         ;   1.3%      ;
+;     Processor 2            ;   1.5%      ;
+;     Processors 3-4         ;   1.5%      ;
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Fitter Netlist Optimizations                                                                                                                                                  ;
-+----------------------+------------------+--------------------+---------------------+-----------+----------------+------------------+------------------+-----------------------+
-; Node                 ; Action           ; Operation          ; Reason              ; Node Port ; Node Port Name ; Destination Node ; Destination Port ; Destination Port Name ;
-+----------------------+------------------+--------------------+---------------------+-----------+----------------+------------------+------------------+-----------------------+
-; pwm:PW|cnt[10]_RTM01 ; Modified         ; Physical Synthesis ; Timing optimization ;           ;                ;                  ;                  ;                       ;
-; pwm:PW|cnt[10]_RTM01 ; Retimed Register ; Physical Synthesis ; Timing optimization ;           ;                ;                  ;                  ;                       ;
-; pwm:PW|cnt[10]_RTM02 ; Modified         ; Physical Synthesis ; Timing optimization ;           ;                ;                  ;                  ;                       ;
-; pwm:PW|cnt[10]_RTM02 ; Retimed Register ; Physical Synthesis ; Timing optimization ;           ;                ;                  ;                  ;                       ;
-+----------------------+------------------+--------------------+---------------------+-----------+----------------+------------------+------------------+-----------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fitter Netlist Optimizations                                                                                                                                                 ;
++-----------------------------+----------+--------------------+---------------------+-----------+----------------+------------------+------------------+-----------------------+
+; Node                        ; Action   ; Operation          ; Reason              ; Node Port ; Node Port Name ; Destination Node ; Destination Port ; Destination Port Name ;
++-----------------------------+----------+--------------------+---------------------+-----------+----------------+------------------+------------------+-----------------------+
+; pwm:PW|cnt[4]_RTM11         ; Modified ; Physical Synthesis ; Timing optimization ;           ;                ;                  ;                  ;                       ;
+; pwm:PW|cnt[4]_RTM20         ; Deleted  ; Physical Synthesis ; Timing optimization ;           ;                ;                  ;                  ;                       ;
+; pwm:PW|cnt[5]_RTM13         ; Modified ; Physical Synthesis ; Timing optimization ;           ;                ;                  ;                  ;                       ;
+; pwm:PW|cnt[5]_RTM22         ; Deleted  ; Physical Synthesis ; Timing optimization ;           ;                ;                  ;                  ;                       ;
+; pwm:PW|cnt[6]               ; Modified ; Physical Synthesis ; Timing optimization ;           ;                ;                  ;                  ;                       ;
+; pwm:PW|cnt[7]               ; Modified ; Physical Synthesis ; Timing optimization ;           ;                ;                  ;                  ;                       ;
+; pwm:PW|cnt[8]_RTM19_RTM012  ; Modified ; Physical Synthesis ; Timing optimization ;           ;                ;                  ;                  ;                       ;
+; pwm:PW|cnt[10]_RTM05        ; Modified ; Physical Synthesis ; Timing optimization ;           ;                ;                  ;                  ;                       ;
+; pwm:PW|cnt[10]_RTM06        ; Modified ; Physical Synthesis ; Timing optimization ;           ;                ;                  ;                  ;                       ;
+; pwm:PW|cnt[10]_RTM17_RTM013 ; Modified ; Physical Synthesis ; Timing optimization ;           ;                ;                  ;                  ;                       ;
++-----------------------------+----------+--------------------+---------------------+-----------+----------------+------------------+------------------+-----------------------+
 
 
 +--------------+
 ; Pin-Out File ;
 +--------------+
-The pin-out file can be found in C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/output_files/maxV_chip.pin.
+The pin-out file can be found in C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/output_files/maxV_chip.pin.
 
 
 +---------------------------------------------------------------------+
@@ -162,28 +168,28 @@ The pin-out file can be found in C:/Users/aaron/Documents/00-CPLD/lastBlast-mast
 +---------------------------------------------+-----------------------+
 ; Resource                                    ; Usage                 ;
 +---------------------------------------------+-----------------------+
-; Total logic elements                        ; 138 / 160 ( 86 % )    ;
-;     -- Combinational with no register       ; 60                    ;
-;     -- Register only                        ; 27                    ;
-;     -- Combinational with a register        ; 51                    ;
+; Total logic elements                        ; 135 / 160 ( 84 % )    ;
+;     -- Combinational with no register       ; 58                    ;
+;     -- Register only                        ; 25                    ;
+;     -- Combinational with a register        ; 52                    ;
 ;                                             ;                       ;
 ; Logic element usage by number of LUT inputs ;                       ;
-;     -- 4 input functions                    ; 55                    ;
-;     -- 3 input functions                    ; 32                    ;
-;     -- 2 input functions                    ; 21                    ;
+;     -- 4 input functions                    ; 50                    ;
+;     -- 3 input functions                    ; 33                    ;
+;     -- 2 input functions                    ; 24                    ;
 ;     -- 1 input functions                    ; 3                     ;
 ;     -- 0 input functions                    ; 0                     ;
 ;                                             ;                       ;
 ; Logic elements by mode                      ;                       ;
-;     -- normal mode                          ; 128                   ;
+;     -- normal mode                          ; 125                   ;
 ;     -- arithmetic mode                      ; 10                    ;
-;     -- qfbk mode                            ; 19                    ;
+;     -- qfbk mode                            ; 17                    ;
 ;     -- register cascade mode                ; 0                     ;
-;     -- synchronous clear/load mode          ; 37                    ;
+;     -- synchronous clear/load mode          ; 36                    ;
 ;     -- asynchronous clear/load mode         ; 16                    ;
 ;                                             ;                       ;
-; Total registers                             ; 78 / 160 ( 49 % )     ;
-; Total LABs                                  ; 15 / 16 ( 94 % )      ;
+; Total registers                             ; 77 / 160 ( 48 % )     ;
+; Total LABs                                  ; 14 / 16 ( 88 % )      ;
 ; Logic elements in carry chains              ; 11                    ;
 ; Virtual pins                                ; 0                     ;
 ; I/O pins                                    ; 49 / 54 ( 91 % )      ;
@@ -197,12 +203,12 @@ The pin-out file can be found in C:/Users/aaron/Documents/00-CPLD/lastBlast-mast
 ; Global signals                              ; 2                     ;
 ;     -- Global clocks                        ; 2 / 4 ( 50 % )        ;
 ; JTAGs                                       ; 0 / 1 ( 0 % )         ;
-; Average interconnect usage (total/H/V)      ; 18.3% / 18.9% / 17.7% ;
-; Peak interconnect usage (total/H/V)         ; 18.3% / 18.9% / 17.7% ;
-; Maximum fan-out                             ; 78                    ;
-; Highest non-global fan-out                  ; 19                    ;
-; Total fan-out                               ; 595                   ;
-; Average fan-out                             ; 3.18                  ;
+; Average interconnect usage (total/H/V)      ; 17.9% / 18.1% / 17.7% ;
+; Peak interconnect usage (total/H/V)         ; 17.9% / 18.1% / 17.7% ;
+; Maximum fan-out                             ; 77                    ;
+; Highest non-global fan-out                  ; 17                    ;
+; Total fan-out                               ; 582                   ;
+; Average fan-out                             ; 3.16                  ;
 +---------------------------------------------+-----------------------+
 
 
@@ -212,7 +218,7 @@ The pin-out file can be found in C:/Users/aaron/Documents/00-CPLD/lastBlast-mast
 ; Name    ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Cell number ; Combinational Fan-Out ; Registered Fan-Out ; Global ; PCI I/O Enabled ; Bus Hold ; Weak Pull Up ; I/O Standard ; Location assigned by ; Slow Slew Rate ;
 +---------+-------+----------+--------------+--------------+-------------+-----------------------+--------------------+--------+-----------------+----------+--------------+--------------+----------------------+----------------+
 ; LCD_PWM ; 40    ; 2        ; 8            ; 2            ; 0           ; 0                     ; 0                  ; no     ; no              ; no       ; Off          ; 3.3-V LVTTL  ; User                 ; no             ;
-; LPC_CLK ; 9     ; 1        ; 1            ; 2            ; 0           ; 78                    ; 0                  ; yes    ; no              ; no       ; Off          ; 3.3-V LVTTL  ; User                 ; no             ;
+; LPC_CLK ; 9     ; 1        ; 1            ; 2            ; 0           ; 77                    ; 0                  ; yes    ; no              ; no       ; Off          ; 3.3-V LVTTL  ; User                 ; no             ;
 ; LPC_RST ; 21    ; 1        ; 2            ; 0            ; 0           ; 27                    ; 0                  ; yes    ; no              ; no       ; Off          ; 3.3-V LVTTL  ; User                 ; no             ;
 +---------+-------+----------+--------------+--------------+-------------+-----------------------+--------------------+--------+-----------------+----------+--------------+--------------+----------------------+----------------+
 
@@ -272,10 +278,10 @@ The pin-out file can be found in C:/Users/aaron/Documents/00-CPLD/lastBlast-mast
 ; FLASH_DQ[5] ; 58    ; 2        ; 3            ; 5            ; 1           ; 1                     ; 0                  ; no     ; no              ; no             ; no              ; no         ; no       ; Off          ; 3.3-V LVTTL  ; 16mA             ; no                     ; User                 ; 10 pF ; CYCLE_TYPE.MEM_WRITE ; -                   ;
 ; FLASH_DQ[6] ; 59    ; 2        ; 3            ; 5            ; 2           ; 1                     ; 0                  ; no     ; no              ; no             ; no              ; no         ; no       ; Off          ; 3.3-V LVTTL  ; 16mA             ; no                     ; User                 ; 10 pF ; CYCLE_TYPE.MEM_WRITE ; -                   ;
 ; FLASH_DQ[7] ; 60    ; 2        ; 3            ; 5            ; 3           ; 1                     ; 0                  ; no     ; no              ; no             ; no              ; no         ; no       ; Off          ; 3.3-V LVTTL  ; 16mA             ; no                     ; User                 ; 10 pF ; CYCLE_TYPE.MEM_WRITE ; -                   ;
-; LPC_LAD[0]  ; 26    ; 1        ; 5            ; 0            ; 1           ; 11                    ; 0                  ; no     ; no              ; no             ; no              ; no         ; no       ; Off          ; 3.3-V LVTTL  ; 16mA             ; no                     ; User                 ; 10 pF ; LPC_LAD[3]~3         ; -                   ;
-; LPC_LAD[1]  ; 25    ; 1        ; 3            ; 0            ; 1           ; 15                    ; 0                  ; no     ; no              ; no             ; no              ; no         ; no       ; Off          ; 3.3-V LVTTL  ; 16mA             ; yes                    ; User                 ; 10 pF ; LPC_LAD[3]~3         ; -                   ;
-; LPC_LAD[2]  ; 24    ; 1        ; 3            ; 0            ; 2           ; 15                    ; 0                  ; no     ; no              ; no             ; no              ; no         ; no       ; Off          ; 3.3-V LVTTL  ; 16mA             ; yes                    ; User                 ; 10 pF ; LPC_LAD[3]~3         ; -                   ;
-; LPC_LAD[3]  ; 22    ; 1        ; 3            ; 0            ; 3           ; 19                    ; 0                  ; no     ; no              ; no             ; no              ; no         ; no       ; Off          ; 3.3-V LVTTL  ; 16mA             ; yes                    ; User                 ; 10 pF ; LPC_LAD[3]~3         ; -                   ;
+; LPC_LAD[0]  ; 26    ; 1        ; 5            ; 0            ; 1           ; 11                    ; 0                  ; no     ; no              ; no             ; no              ; no         ; no       ; Off          ; 3.3-V LVTTL  ; 16mA             ; no                     ; User                 ; 10 pF ; LPC_LAD[0]~1         ; -                   ;
+; LPC_LAD[1]  ; 25    ; 1        ; 3            ; 0            ; 1           ; 15                    ; 0                  ; no     ; no              ; no             ; no              ; no         ; no       ; Off          ; 3.3-V LVTTL  ; 16mA             ; no                     ; User                 ; 10 pF ; LPC_LAD[0]~1         ; -                   ;
+; LPC_LAD[2]  ; 24    ; 1        ; 3            ; 0            ; 2           ; 15                    ; 0                  ; no     ; no              ; no             ; no              ; no         ; no       ; Off          ; 3.3-V LVTTL  ; 16mA             ; no                     ; User                 ; 10 pF ; LPC_LAD[0]~1         ; -                   ;
+; LPC_LAD[3]  ; 22    ; 1        ; 3            ; 0            ; 3           ; 17                    ; 0                  ; no     ; no              ; no             ; no              ; no         ; no       ; Off          ; 3.3-V LVTTL  ; 16mA             ; no                     ; User                 ; 10 pF ; LPC_LAD[0]~1         ; -                   ;
 +-------------+-------+----------+--------------+--------------+-------------+-----------------------+--------------------+--------+-----------------+----------------+-----------------+------------+----------+--------------+--------------+------------------+------------------------+----------------------+-------+----------------------+---------------------+
 
 
@@ -386,8 +392,8 @@ Note: User assignments will override these defaults. The user specified values a
 +----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name ; Entity Name ; Library Name ;
 +----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+-------------+--------------+
-; |MAXV_CHIP                 ; 138 (114)   ; 78           ; 0          ; 49   ; 0            ; 60 (49)      ; 27 (21)           ; 51 (44)          ; 11 (0)          ; 19 (14)    ; |MAXV_CHIP          ; MAXV_CHIP   ; work         ;
-;    |pwm:PW|                ; 24 (24)     ; 13           ; 0          ; 0    ; 0            ; 11 (11)      ; 6 (6)             ; 7 (7)            ; 11 (11)         ; 5 (5)      ; |MAXV_CHIP|pwm:PW   ; pwm         ; work         ;
+; |MAXV_CHIP                 ; 135 (115)   ; 77           ; 0          ; 49   ; 0            ; 58 (51)      ; 25 (23)           ; 52 (41)          ; 11 (0)          ; 17 (12)    ; |MAXV_CHIP          ; MAXV_CHIP   ; work         ;
+;    |pwm:PW|                ; 20 (20)     ; 13           ; 0          ; 0    ; 0            ; 7 (7)        ; 2 (2)             ; 11 (11)          ; 11 (11)         ; 5 (5)      ; |MAXV_CHIP|pwm:PW   ; pwm         ; work         ;
 +----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -400,7 +406,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; LED_R             ; Output   ; --            ;
 ; LED_G             ; Output   ; --            ;
 ; LED_B             ; Output   ; --            ;
-; control_D0        ; Output   ; --            ;
 ; FLASH_ADDRESS[0]  ; Output   ; --            ;
 ; FLASH_ADDRESS[1]  ; Output   ; --            ;
 ; FLASH_ADDRESS[2]  ; Output   ; --            ;
@@ -424,6 +429,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; FLASH_ADDRESS[20] ; Output   ; --            ;
 ; FLASH_OE          ; Output   ; --            ;
 ; FLASH_WE          ; Output   ; --            ;
+; control_D0        ; Output   ; --            ;
 ; LCD_OUT_DATA[0]   ; Output   ; --            ;
 ; LCD_OUT_DATA[1]   ; Output   ; --            ;
 ; LCD_OUT_DATA[2]   ; Output   ; --            ;
@@ -432,10 +438,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; LCD_E             ; Output   ; --            ;
 ; LCD_CONTRAST      ; Output   ; --            ;
 ; LCD_PWM           ; Input    ; (0)           ;
-; LPC_LAD[0]        ; Bidir    ; (1)           ;
-; LPC_LAD[1]        ; Bidir    ; (1)           ;
-; LPC_LAD[2]        ; Bidir    ; (1)           ;
-; LPC_LAD[3]        ; Bidir    ; (1)           ;
 ; FLASH_DQ[0]       ; Bidir    ; (1)           ;
 ; FLASH_DQ[1]       ; Bidir    ; (1)           ;
 ; FLASH_DQ[2]       ; Bidir    ; (1)           ;
@@ -444,8 +446,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; FLASH_DQ[5]       ; Bidir    ; (1)           ;
 ; FLASH_DQ[6]       ; Bidir    ; (1)           ;
 ; FLASH_DQ[7]       ; Bidir    ; (1)           ;
-; LPC_CLK           ; Input    ; (0)           ;
+; LPC_LAD[0]        ; Bidir    ; (1)           ;
+; LPC_LAD[1]        ; Bidir    ; (1)           ;
+; LPC_LAD[2]        ; Bidir    ; (1)           ;
+; LPC_LAD[3]        ; Bidir    ; (1)           ;
 ; LPC_RST           ; Input    ; (1)           ;
+; LPC_CLK           ; Input    ; (0)           ;
 +-------------------+----------+---------------+
 
 
@@ -454,23 +460,23 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-------------------------+-------------+---------+----------------------------+--------+----------------------+------------------+
 ; Name                    ; Location    ; Fan-Out ; Usage                      ; Global ; Global Resource Used ; Global Line Name ;
 +-------------------------+-------------+---------+----------------------------+--------+----------------------+------------------+
-; CYCLE_TYPE.MEM_WRITE    ; LC_X7_Y2_N7 ; 12      ; Output enable              ; no     ; --                   ; --               ;
-; DQ[0]~1                 ; LC_X4_Y3_N1 ; 4       ; Clock enable               ; no     ; --                   ; --               ;
-; DQ[4]~2                 ; LC_X3_Y2_N2 ; 4       ; Clock enable               ; no     ; --                   ; --               ;
-; LPC_ADDRESS[0]~17       ; LC_X4_Y2_N1 ; 4       ; Clock enable               ; no     ; --                   ; --               ;
-; LPC_ADDRESS[12]~12      ; LC_X7_Y2_N2 ; 4       ; Clock enable               ; no     ; --                   ; --               ;
-; LPC_ADDRESS[16]~13      ; LC_X4_Y1_N5 ; 4       ; Clock enable               ; no     ; --                   ; --               ;
-; LPC_ADDRESS[4]~18       ; LC_X4_Y2_N3 ; 4       ; Clock enable               ; no     ; --                   ; --               ;
-; LPC_ADDRESS[8]~11       ; LC_X6_Y2_N5 ; 4       ; Clock enable               ; no     ; --                   ; --               ;
-; LPC_CLK                 ; PIN_9       ; 78      ; Clock                      ; yes    ; Global Clock         ; GCLK1            ;
-; LPC_LAD[3]~3            ; LC_X3_Y1_N9 ; 5       ; Output enable              ; no     ; --                   ; --               ;
-; LPC_LAD[3]~7            ; PIN_22      ; 19      ; Sync. clear                ; no     ; --                   ; --               ;
+; CYCLE_TYPE.MEM_WRITE    ; LC_X5_Y3_N4 ; 12      ; Output enable              ; no     ; --                   ; --               ;
+; DQ[0]~1                 ; LC_X3_Y3_N9 ; 4       ; Clock enable               ; no     ; --                   ; --               ;
+; DQ[4]~2                 ; LC_X3_Y3_N3 ; 4       ; Clock enable               ; no     ; --                   ; --               ;
+; LPC_ADDRESS[0]~16       ; LC_X6_Y2_N0 ; 4       ; Clock enable               ; no     ; --                   ; --               ;
+; LPC_ADDRESS[12]~15      ; LC_X6_Y2_N3 ; 4       ; Clock enable               ; no     ; --                   ; --               ;
+; LPC_ADDRESS[19]~12      ; LC_X2_Y2_N4 ; 4       ; Clock enable               ; no     ; --                   ; --               ;
+; LPC_ADDRESS[4]~17       ; LC_X4_Y2_N0 ; 4       ; Clock enable               ; no     ; --                   ; --               ;
+; LPC_ADDRESS[8]~14       ; LC_X4_Y2_N1 ; 4       ; Clock enable               ; no     ; --                   ; --               ;
+; LPC_CLK                 ; PIN_9       ; 77      ; Clock                      ; yes    ; Global Clock         ; GCLK1            ;
+; LPC_LAD[0]~1            ; LC_X4_Y1_N5 ; 5       ; Output enable              ; no     ; --                   ; --               ;
+; LPC_LAD[3]~5            ; PIN_22      ; 17      ; Sync. clear                ; no     ; --                   ; --               ;
 ; LPC_RST                 ; PIN_21      ; 27      ; Async. clear, Clock enable ; yes    ; Global Clock         ; GCLK3            ;
-; READBUFFER[0]~1         ; LC_X5_Y3_N9 ; 8       ; Clock enable               ; no     ; --                   ; --               ;
-; REG_LCD_DATA[3]~1       ; LC_X4_Y2_N6 ; 3       ; Clock enable               ; no     ; --                   ; --               ;
-; REG_LCD_DATA[4]~0       ; LC_X3_Y2_N3 ; 3       ; Clock enable               ; no     ; --                   ; --               ;
-; REG_XBLAST_CONTROL[1]~2 ; LC_X4_Y1_N4 ; 2       ; Clock enable               ; no     ; --                   ; --               ;
-; Selector13~0            ; LC_X7_Y2_N4 ; 4       ; Clock enable               ; no     ; --                   ; --               ;
+; READBUFFER[7]~1         ; LC_X5_Y1_N9 ; 8       ; Clock enable               ; no     ; --                   ; --               ;
+; REG_LCD_DATA[3]~1       ; LC_X5_Y3_N5 ; 3       ; Clock enable               ; no     ; --                   ; --               ;
+; REG_LCD_DATA[4]~0       ; LC_X3_Y2_N8 ; 3       ; Clock enable               ; no     ; --                   ; --               ;
+; REG_XBLAST_CONTROL[1]~1 ; LC_X4_Y2_N2 ; 2       ; Clock enable               ; no     ; --                   ; --               ;
+; Selector12~0            ; LC_X2_Y3_N7 ; 4       ; Clock enable               ; no     ; --                   ; --               ;
 +-------------------------+-------------+---------+----------------------------+--------+----------------------+------------------+
 
 
@@ -479,7 +485,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------+----------+---------+----------------------+------------------+
 ; Name    ; Location ; Fan-Out ; Global Resource Used ; Global Line Name ;
 +---------+----------+---------+----------------------+------------------+
-; LPC_CLK ; PIN_9    ; 78      ; Global Clock         ; GCLK1            ;
+; LPC_CLK ; PIN_9    ; 77      ; Global Clock         ; GCLK1            ;
 ; LPC_RST ; PIN_21   ; 27      ; Global Clock         ; GCLK3            ;
 +---------+----------+---------+----------------------+------------------+
 
@@ -489,12 +495,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+--------------------+
 ; Routing Resource Type ; Usage              ;
 +-----------------------+--------------------+
-; C4s                   ; 117 / 784 ( 15 % ) ;
-; Direct links          ; 41 / 888 ( 5 % )   ;
+; C4s                   ; 111 / 784 ( 14 % ) ;
+; Direct links          ; 47 / 888 ( 5 % )   ;
 ; Global clocks         ; 2 / 4 ( 50 % )     ;
-; LAB clocks            ; 10 / 32 ( 31 % )   ;
-; LUT chains            ; 8 / 216 ( 4 % )    ;
-; Local interconnects   ; 230 / 888 ( 26 % ) ;
+; LAB clocks            ; 9 / 32 ( 28 % )    ;
+; LUT chains            ; 9 / 216 ( 4 % )    ;
+; Local interconnects   ; 236 / 888 ( 27 % ) ;
 ; R4s                   ; 102 / 704 ( 14 % ) ;
 +-----------------------+--------------------+
 
@@ -502,29 +508,29 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------------------------------------------------------------+
 ; LAB Logic Elements                                                        ;
 +--------------------------------------------+------------------------------+
-; Number of Logic Elements  (Average = 9.20) ; Number of LABs  (Total = 15) ;
+; Number of Logic Elements  (Average = 9.64) ; Number of LABs  (Total = 14) ;
 +--------------------------------------------+------------------------------+
 ; 1                                          ; 0                            ;
 ; 2                                          ; 0                            ;
 ; 3                                          ; 0                            ;
-; 4                                          ; 2                            ;
+; 4                                          ; 0                            ;
 ; 5                                          ; 0                            ;
-; 6                                          ; 0                            ;
+; 6                                          ; 1                            ;
 ; 7                                          ; 0                            ;
 ; 8                                          ; 0                            ;
-; 9                                          ; 0                            ;
-; 10                                         ; 13                           ;
+; 9                                          ; 1                            ;
+; 10                                         ; 12                           ;
 +--------------------------------------------+------------------------------+
 
 
 +-------------------------------------------------------------------+
 ; LAB-wide Signals                                                  ;
 +------------------------------------+------------------------------+
-; LAB-wide Signals  (Average = 1.60) ; Number of LABs  (Total = 15) ;
+; LAB-wide Signals  (Average = 1.86) ; Number of LABs  (Total = 14) ;
 +------------------------------------+------------------------------+
-; 1 Async. clear                     ; 4                            ;
-; 1 Clock                            ; 15                           ;
-; 1 Clock enable                     ; 3                            ;
+; 1 Async. clear                     ; 5                            ;
+; 1 Clock                            ; 14                           ;
+; 1 Clock enable                     ; 5                            ;
 ; 1 Sync. clear                      ; 1                            ;
 ; 2 Clock enables                    ; 1                            ;
 +------------------------------------+------------------------------+
@@ -533,71 +539,69 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------------------------------------------------------------+
 ; LAB Signals Sourced                                                         ;
 +----------------------------------------------+------------------------------+
-; Number of Signals Sourced  (Average = 10.53) ; Number of LABs  (Total = 15) ;
-+----------------------------------------------+------------------------------+
-; 0                                            ; 0                            ;
-; 1                                            ; 0                            ;
-; 2                                            ; 0                            ;
-; 3                                            ; 0                            ;
-; 4                                            ; 2                            ;
-; 5                                            ; 0                            ;
-; 6                                            ; 0                            ;
-; 7                                            ; 0                            ;
-; 8                                            ; 0                            ;
-; 9                                            ; 0                            ;
-; 10                                           ; 4                            ;
-; 11                                           ; 5                            ;
-; 12                                           ; 1                            ;
-; 13                                           ; 1                            ;
-; 14                                           ; 1                            ;
-; 15                                           ; 0                            ;
-; 16                                           ; 1                            ;
-+----------------------------------------------+------------------------------+
-
-
-+--------------------------------------------------------------------------------+
-; LAB Signals Sourced Out                                                        ;
-+-------------------------------------------------+------------------------------+
-; Number of Signals Sourced Out  (Average = 7.13) ; Number of LABs  (Total = 15) ;
-+-------------------------------------------------+------------------------------+
-; 0                                               ; 0                            ;
-; 1                                               ; 0                            ;
-; 2                                               ; 1                            ;
-; 3                                               ; 1                            ;
-; 4                                               ; 1                            ;
-; 5                                               ; 1                            ;
-; 6                                               ; 2                            ;
-; 7                                               ; 2                            ;
-; 8                                               ; 3                            ;
-; 9                                               ; 1                            ;
-; 10                                              ; 1                            ;
-; 11                                              ; 1                            ;
-; 12                                              ; 0                            ;
-; 13                                              ; 1                            ;
-+-------------------------------------------------+------------------------------+
-
-
-+-----------------------------------------------------------------------------+
-; LAB Distinct Inputs                                                         ;
-+----------------------------------------------+------------------------------+
-; Number of Distinct Inputs  (Average = 11.40) ; Number of LABs  (Total = 15) ;
+; Number of Signals Sourced  (Average = 10.86) ; Number of LABs  (Total = 14) ;
 +----------------------------------------------+------------------------------+
 ; 0                                            ; 0                            ;
 ; 1                                            ; 0                            ;
 ; 2                                            ; 0                            ;
 ; 3                                            ; 0                            ;
 ; 4                                            ; 0                            ;
-; 5                                            ; 3                            ;
+; 5                                            ; 0                            ;
 ; 6                                            ; 1                            ;
 ; 7                                            ; 0                            ;
 ; 8                                            ; 0                            ;
-; 9                                            ; 1                            ;
+; 9                                            ; 0                            ;
+; 10                                           ; 7                            ;
+; 11                                           ; 2                            ;
+; 12                                           ; 1                            ;
+; 13                                           ; 1                            ;
+; 14                                           ; 1                            ;
+; 15                                           ; 1                            ;
++----------------------------------------------+------------------------------+
+
+
++--------------------------------------------------------------------------------+
+; LAB Signals Sourced Out                                                        ;
++-------------------------------------------------+------------------------------+
+; Number of Signals Sourced Out  (Average = 7.14) ; Number of LABs  (Total = 14) ;
++-------------------------------------------------+------------------------------+
+; 0                                               ; 0                            ;
+; 1                                               ; 0                            ;
+; 2                                               ; 0                            ;
+; 3                                               ; 0                            ;
+; 4                                               ; 1                            ;
+; 5                                               ; 4                            ;
+; 6                                               ; 2                            ;
+; 7                                               ; 0                            ;
+; 8                                               ; 3                            ;
+; 9                                               ; 2                            ;
+; 10                                              ; 1                            ;
+; 11                                              ; 0                            ;
+; 12                                              ; 1                            ;
++-------------------------------------------------+------------------------------+
+
+
++-----------------------------------------------------------------------------+
+; LAB Distinct Inputs                                                         ;
++----------------------------------------------+------------------------------+
+; Number of Distinct Inputs  (Average = 12.79) ; Number of LABs  (Total = 14) ;
++----------------------------------------------+------------------------------+
+; 0                                            ; 0                            ;
+; 1                                            ; 0                            ;
+; 2                                            ; 0                            ;
+; 3                                            ; 0                            ;
+; 4                                            ; 0                            ;
+; 5                                            ; 1                            ;
+; 6                                            ; 1                            ;
+; 7                                            ; 0                            ;
+; 8                                            ; 0                            ;
+; 9                                            ; 0                            ;
 ; 10                                           ; 0                            ;
-; 11                                           ; 0                            ;
-; 12                                           ; 4                            ;
-; 13                                           ; 3                            ;
-; 14                                           ; 0                            ;
-; 15                                           ; 0                            ;
+; 11                                           ; 3                            ;
+; 12                                           ; 2                            ;
+; 13                                           ; 1                            ;
+; 14                                           ; 1                            ;
+; 15                                           ; 2                            ;
 ; 16                                           ; 1                            ;
 ; 17                                           ; 0                            ;
 ; 18                                           ; 1                            ;
@@ -642,20 +646,20 @@ Info (332111): Found 1 clocks
     Info (332111): ======== ============
     Info (332111):   30.000      LPC_CLK
 Info (186079): Completed User Assigned Global Signals Promotion Operation
-Info (186215): Automatically promoted signal "LPC_CLK" to use Global clock in PIN 9 File: C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/maxV_chip.vhd Line: 73
-Info (186216): Automatically promoted some destinations of signal "LPC_RST" to use Global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/maxV_chip.vhd Line: 74
-    Info (186217): Destination "control_D0~reg0" may be non-global or may not use global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/maxV_chip.vhd Line: 271
-    Info (186217): Destination "COUNT[2]" may be non-global or may not use global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/maxV_chip.vhd Line: 271
-    Info (186217): Destination "COUNT[1]" may be non-global or may not use global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/maxV_chip.vhd Line: 271
-    Info (186217): Destination "COUNT[0]" may be non-global or may not use global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/maxV_chip.vhd Line: 271
-    Info (186217): Destination "LPC_ADDRESS[16]~9" may be non-global or may not use global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/maxV_chip.vhd Line: 271
-    Info (186217): Destination "LPC_ADDRESS[20]~14" may be non-global or may not use global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/maxV_chip.vhd Line: 271
-    Info (186217): Destination "REG_LCD_DATA[4]~0" may be non-global or may not use global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/maxV_chip.vhd Line: 271
-    Info (186217): Destination "DQ[0]~0" may be non-global or may not use global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/maxV_chip.vhd Line: 271
-    Info (186217): Destination "READBUFFER[0]~1" may be non-global or may not use global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/maxV_chip.vhd Line: 271
-    Info (186217): Destination "DQ[0]~1" may be non-global or may not use global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/maxV_chip.vhd Line: 271
+Info (186215): Automatically promoted signal "LPC_CLK" to use Global clock in PIN 9 File: C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/maxV_chip.vhd Line: 78
+Info (186216): Automatically promoted some destinations of signal "LPC_RST" to use Global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/maxV_chip.vhd Line: 79
+    Info (186217): Destination "COUNT[0]" may be non-global or may not use global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/maxV_chip.vhd Line: 275
+    Info (186217): Destination "COUNT[2]" may be non-global or may not use global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/maxV_chip.vhd Line: 275
+    Info (186217): Destination "COUNT[1]" may be non-global or may not use global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/maxV_chip.vhd Line: 275
+    Info (186217): Destination "LPC_ADDRESS[20]~8" may be non-global or may not use global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/maxV_chip.vhd Line: 275
+    Info (186217): Destination "LPC_ADDRESS[12]~11" may be non-global or may not use global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/maxV_chip.vhd Line: 275
+    Info (186217): Destination "REG_LCD_DATA[4]~0" may be non-global or may not use global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/maxV_chip.vhd Line: 275
+    Info (186217): Destination "DQ[0]~0" may be non-global or may not use global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/maxV_chip.vhd Line: 275
+    Info (186217): Destination "DQ[0]~1" may be non-global or may not use global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/maxV_chip.vhd Line: 275
+    Info (186217): Destination "DQ[4]~2" may be non-global or may not use global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/maxV_chip.vhd Line: 275
+    Info (186217): Destination "READBUFFER[7]~1" may be non-global or may not use global clock File: C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/maxV_chip.vhd Line: 275
     Info (186218): Limited to 10 non-global destinations
-Info (186228): Pin "LPC_RST" drives global clock, but is not placed in a dedicated clock pin position File: C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/maxV_chip.vhd Line: 74
+Info (186228): Pin "LPC_RST" drives global clock, but is not placed in a dedicated clock pin position File: C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/maxV_chip.vhd Line: 79
 Info (186079): Completed Auto Global Promotion Operation
 Info (176234): Starting register packing
 Info (186468): Started processing fast register assignments
@@ -663,7 +667,7 @@ Info (186469): Finished processing fast register assignments
 Info (176235): Finished register packing
 Info (128000): Starting physical synthesis optimizations for speed
 Info (128002): Starting physical synthesis algorithm register retiming
-Info (128003): Physical synthesis algorithm register retiming complete: estimated slack improvement of 0 ps
+Info (128003): Physical synthesis algorithm register retiming complete: estimated slack improvement of 1 ps
 Info (128002): Starting physical synthesis algorithm register retiming
 Info (128003): Physical synthesis algorithm register retiming complete: estimated slack improvement of 0 ps
 Info (128002): Starting physical synthesis algorithm combinational resynthesis using boolean division
@@ -686,13 +690,13 @@ Info (170193): Fitter routing operations beginning
 Info (170195): Router estimated average interconnect usage is 14% of the available device resources
     Info (170196): Router estimated peak interconnect usage is 14% of the available device resources in the region that extends from location X0_Y0 to location X8_Y5
 Info (170194): Fitter routing operations ending: elapsed time is 00:00:00
-Info (11888): Total time spent on timing analysis during the Fitter is 0.13 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 0.12 seconds.
 Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:00
 Warning (169174): The Reserve All Unused Pins setting has not been specified, and will default to 'As output driving ground'.
-Info (144001): Generated suppressed messages file C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/output_files/maxV_chip.fit.smsg
+Info (144001): Generated suppressed messages file C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/output_files/maxV_chip.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 5356 megabytes
-    Info: Processing ended: Fri Dec 20 06:07:23 2019
+    Info: Peak virtual memory: 5360 megabytes
+    Info: Processing ended: Thu Jan 02 16:15:06 2020
     Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:04
 
@@ -700,6 +704,6 @@ Info: Quartus Prime Fitter was successful. 0 errors, 1 warning
 +----------------------------+
 ; Fitter Suppressed Messages ;
 +----------------------------+
-The suppressed messages can be found in C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/output_files/maxV_chip.fit.smsg.
+The suppressed messages can be found in C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/output_files/maxV_chip.fit.smsg.
 
 

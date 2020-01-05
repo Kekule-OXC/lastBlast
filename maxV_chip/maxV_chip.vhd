@@ -41,12 +41,13 @@
 --#define BNKTSOPSPLIT0   	0x10u
 --#define BNKTSOPSPLIT1   	0x18u
 --#define NOBNKID         	0xFF
+
 --//XBlast Mod bank toggle values
 --#define BNK512  	     	0x84u
 --#define BNK256  	     	0x86u
 --#define BNKOS  				0x87u
 
---//XBlast Mod and SmartXX LPC registers to drive LCD... !!can i get away with just the last 8 bits?
+--//XBlast Mod and SmartXX LPC registers to drive LCD... 
 --#define XBLAST_IO    		0xF70Du
 --#define XBLAST_CONTROL   0xF70Fu
 --#define XODUS_CONTROL    0x00FFu
@@ -57,17 +58,21 @@
 
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
-USE IEEE.STD_LOGIC_ARITH.ALL;
+--USE IEEE.STD_LOGIC_ARITH.ALL;
 USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 ENTITY MAXV_CHIP IS
 	PORT (
 		
+
+		LED_R : OUT STD_LOGIC:='1' ; -- R G B
+		LED_G : OUT STD_LOGIC:='1' ; -- R G B
+		LED_B : OUT STD_LOGIC:='1' ; -- R G B
 		
-		--HEADER_SCK : OUT STD_LOGIC;
-		--HEADER_MOSI : OUT STD_LOGIC;
-		LED_R : OUT STD_LOGIC ; -- R G B
-		LED_G : OUT STD_LOGIC ; -- R G B
-		LED_B : OUT STD_LOGIC ; -- R G B
+		-- NOR FLASH IO
+		FLASH_ADDRESS : OUT STD_LOGIC_VECTOR (20 DOWNTO 0);--:= "011000000000000000000"; -- memory address input
+		FLASH_DQ : INOUT STD_LOGIC_VECTOR (7 DOWNTO 0); -- data to be transferred
+		FLASH_OE : OUT STD_LOGIC; --output enable active low
+		FLASH_WE : OUT STD_LOGIC; -- write enable active low
 		
 		-- LPC IO
 		LPC_CLK : IN STD_LOGIC;
@@ -76,24 +81,14 @@ ENTITY MAXV_CHIP IS
 		
 		control_D0	:	OUT	STD_LOGIC;
 		
-		-- IO for HARDWARE BANK SWITCHING
-		----BANK : IN STD_LOGIC_VECTOR (2 DOWNTO 0); -- hardware bank switch
-		
-		-- NOR FLASH IO
-		FLASH_ADDRESS : OUT STD_LOGIC_VECTOR (20 DOWNTO 0); -- memory address input
-		FLASH_DQ : INOUT STD_LOGIC_VECTOR (7 DOWNTO 0); -- data to be transferred
-		FLASH_OE : OUT STD_LOGIC; --output enable active low
-		FLASH_WE : OUT STD_LOGIC; -- write enable active low
-		
+				
 		--HD44780 LCD Pins
 		LCD_OUT_DATA : OUT std_logic_vector (3 DOWNTO 0);
 		LCD_RS : OUT std_logic;
 		LCD_E : OUT std_logic;
 		LCD_CONTRAST : OUT std_logic;
 		LCD_PWM : IN STD_LOGIC
-		
-		
-				
+					
 	);
 END MAXV_CHIP;
 
@@ -129,7 +124,8 @@ ARCHITECTURE Behavioral OF MAXV_CHIP IS
 	TAR_EXIT
 	);
 	
-	TYPE CYC_TYPE IS (
+	TYPE CYC_TYPE IS 
+	(
 	IO_READ,
 	IO_WRITE,
 	MEM_READ,
@@ -139,12 +135,12 @@ ARCHITECTURE Behavioral OF MAXV_CHIP IS
 	SIGNAL LPC_CURRENT_STATE : LPC_STATE_MACHINE;
 	SIGNAL CYCLE_TYPE : CYC_TYPE;
 	
-	SIGNAL LPC_ADDRESS : STD_LOGIC_VECTOR (20 DOWNTO 0);-- := (OTHERS => '0');
-	SIGNAL DQ : STD_LOGIC_VECTOR (7 DOWNTO 0):= "ZZZZZZZZ";-- := (OTHERS => '0');
+	SIGNAL LPC_ADDRESS : STD_LOGIC_VECTOR (20 DOWNTO 0);
+	
 	
 	
 
-	--IO REGISTER CONSTANTS !!can i get away with 8 bit?
+	--IO REGISTER CONSTANTS 
 	CONSTANT XBLAST_IO_ADDR : STD_LOGIC_VECTOR (15 DOWNTO 0) := x"F70D";---R/W
 	CONSTANT XBLAST_CONTROL_ADDR : STD_LOGIC_VECTOR (15 DOWNTO 0) := x"F70F";--Write
 	CONSTANT XODUS_CONTROL_ADDR : STD_LOGIC_VECTOR (15 DOWNTO 0) := x"00FF";--write
@@ -152,8 +148,11 @@ ARCHITECTURE Behavioral OF MAXV_CHIP IS
 	CONSTANT LCD_CT_ADDR : STD_LOGIC_VECTOR (15 DOWNTO 0) := x"F703";--"F703";--write
 	CONSTANT LCD_DATA_ADDR : STD_LOGIC_VECTOR (15 DOWNTO 0) := x"F700";--"F700";--write
 	CONSTANT XODUS_ID_ADDR : STD_LOGIC_VECTOR (15 DOWNTO 0) := x"00FE";--read		!!IMPLEMENT
-	CONSTANT SYSCON_REG : STD_LOGIC_VECTOR (15 DOWNTO 0) := x"F701";--"F701";--read	!!IMPLEMENT
+	CONSTANT SYSCON_REG : STD_LOGIC_VECTOR (15 DOWNTO 0) := x"F701";--"F701";--read	
 	
+	
+	--R/W for memory 
+	SIGNAL DQ : STD_LOGIC_VECTOR (7 DOWNTO 0):= "ZZZZZZZZ";-- := (OTHERS => '0');
 	--IO WRITE REGISTERS SIGNALS
 
 --	XBLAST_IO: 0xF70D	
@@ -175,7 +174,7 @@ ARCHITECTURE Behavioral OF MAXV_CHIP IS
 --
 --|Bank switches truth table | |iSW1 |iSW2 |Bank | |0 |0 |BNK512 | |0 |1 |BNK512 | |1 |0 |BNK256 | |1 |1 |BNKOS |
 --|TSOP split control signals truth table | |A19_ctrl |A19 |TSOP Bank | |0 |0 |Full TSOP | |0 |1 |Full TSOP | |1 |0 |Split bank0 | |1 |1 |Split bank1 |
-	SIGNAL REG_XBLAST_CONTROL : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00000011"; --	OS Bank ctrl	Kill mod	A19_ctrl	A19	D0_control	iSW1	iSW2
+	SIGNAL REG_XBLAST_CONTROL : STD_LOGIC_VECTOR (7 DOWNTO 0):= "01000011"; --	X OS_Bank_ctrl	Kill_mod	A19_ctrl	A19	D0_control	iSW1	iSW2
 	
 --	XODUS_CONTROL 0x00FF	
 --	iSW = internal state of SW. iSW can be disconnected from SW when OS seize control of it.										
@@ -183,17 +182,18 @@ ARCHITECTURE Behavioral OF MAXV_CHIP IS
 --	#A19ctrl = inverted value of A19_ctrl(For Evolution-X support)										
 --	D0_control/#A19_ctrl = This bit is set to '1' whenever D0_control = '1' OR A19_ctrl = '0'(For Evolution-X support)										
 --	A15 = State of A15. '1' when is grounded.
-	SIGNAL REG_XODUS_CONTROL : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00000000"; --X	iSW2	A19_ctrl	iSW1	#A19_ctrl	D0_control/#A19_ctrl	A15	iSW1
+--X	iSW2	A19_ctrl	iSW1	#A19_ctrl	D0_control/#A19_ctrl	A15	iSW1
+	SIGNAL REG_XODUS_CONTROL : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01000100"; 
 	
-	SIGNAL REG_LCD_BL : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00000000"; 	--X	LCD-BL5	LCD-BL4	LCD-BL3	LCD-BL2	LCD-BL1	LCD-BL0	X
-	SIGNAL REG_LCD_CT : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00000000";	--X	LCD-CT5	LCD-CT4	LCD-CT3	LCD-CT2	LCD-CT1	LCD-CT0	X
-	SIGNAL REG_LCD_DATA : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00000000";--X	LCD-D7	LCD-D6	LCD-D5 	LCD-D4	LCD-E		LCD-RS	X  !!CHECK ME
+	SIGNAL REG_LCD_BL : STD_LOGIC_VECTOR (7 DOWNTO 0);-- := "00000000"; 	--X	LCD-BL5	LCD-BL4	LCD-BL3	LCD-BL2	LCD-BL1	LCD-BL0	X
+	SIGNAL REG_LCD_CT : STD_LOGIC_VECTOR (7 DOWNTO 0);-- := "00000000";	--X	LCD-CT5	LCD-CT4	LCD-CT3	LCD-CT2	LCD-CT1	LCD-CT0	X
+	SIGNAL REG_LCD_DATA : STD_LOGIC_VECTOR (7 DOWNTO 0);-- := "00000000";--X	LCD-D7	LCD-D6	LCD-D5 	LCD-D4	LCD-E		LCD-RS	X  !!CHECK ME
 	
 --IO READ CONSTANTS
 	--SIGNAL REG_XODUS_CONTROL_READ : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00101010";--read		!!FIXME
 	CONSTANT REG_XODUS_ID_READ : STD_LOGIC_VECTOR(7 DOWNTO 0) := "01000101"; --0x45
-	SIGNAL REG_SYSCON_REG_READ : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01000101";--	
-	SIGNAL REG_XBLAST_IO_READ : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00000000";--	!!FIXME
+	SIGNAL REG_SYSCON_REG_READ : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01000101";--0x45	
+	SIGNAL REG_XBLAST_IO_READ : STD_LOGIC_VECTOR (7 DOWNTO 0);-- := "00000000";--	!!FIXME
 	
 	
 	SIGNAL READBUFFER	:	STD_LOGIC_VECTOR (7 DOWNTO 0);
@@ -207,6 +207,9 @@ ARCHITECTURE Behavioral OF MAXV_CHIP IS
 	
 BEGIN
 
+	LED_R <= LPC_ADDRESS(20);--REG_XBLAST_CONTROL(7);
+	LED_G <= LPC_ADDRESS(19);--REG_XBLAST_CONTROL(1);
+	LED_B <= LPC_ADDRESS(18);--REG_XBLAST_CONTROL(0);
 
 
 	LCD_CONTRAST<=CONTRAST_TARGET;
@@ -236,10 +239,11 @@ PW : entity work.pwm port map(LPC_CLK,reset, pos, CONTRAST_TARGET);
 		--The output values depend on variable states of the LPC transaction!
 		LPC_LAD <= "0000" WHEN LPC_CURRENT_STATE = SYNC_COMPLETE ELSE
 		           "0101" WHEN LPC_CURRENT_STATE = SYNC ELSE
-		           "1111" WHEN (LPC_CURRENT_STATE = TAR2 OR LPC_CURRENT_STATE = TAR_EXIT) ELSE
-		           READBUFFER(3 DOWNTO 0) WHEN LPC_CURRENT_STATE = READ_DATA0 ELSE --This has to be lower nibble first!
-		           READBUFFER(7 DOWNTO 4) WHEN LPC_CURRENT_STATE = READ_DATA1 ELSE --The upper nibble on the second clock.
-		           "ZZZZ";
+		           "1111" WHEN LPC_CURRENT_STATE = TAR2  ELSE
+		           "1111" WHEN LPC_CURRENT_STATE = TAR_EXIT ELSE
+						READBUFFER(3 DOWNTO 0) WHEN LPC_CURRENT_STATE = READ_DATA0 ELSE 
+						READBUFFER(7 DOWNTO 4) WHEN LPC_CURRENT_STATE = READ_DATA1 ELSE 
+						"ZZZZ";
 		--Flash data vector outputs the data value in MEM_WRITE mode, else its just an input
 		FLASH_DQ <= DQ WHEN CYCLE_TYPE = MEM_WRITE ELSE "ZZZZZZZZ";
 		
@@ -253,13 +257,13 @@ PW : entity work.pwm port map(LPC_CLK,reset, pos, CONTRAST_TARGET);
 		--Output Enable for Flash Memory Read (Active low)
 		--Output Enable must be pulled low for 50ns before data is valid for reading
 		FLASH_OE <= '0' WHEN CYCLE_TYPE = MEM_READ AND
-		            (LPC_CURRENT_STATE = TAR1 OR
-		            LPC_CURRENT_STATE = TAR2 OR
-		            LPC_CURRENT_STATE = SYNC OR
-		            LPC_CURRENT_STATE = SYNC_COMPLETE OR
-		            LPC_CURRENT_STATE = READ_DATA0 OR
-		            LPC_CURRENT_STATE = READ_DATA1 OR
-		            LPC_CURRENT_STATE = TAR_EXIT) ELSE '1';
+               (LPC_CURRENT_STATE = TAR1 OR
+               LPC_CURRENT_STATE = TAR2 OR
+               LPC_CURRENT_STATE = SYNC OR
+               LPC_CURRENT_STATE = SYNC_COMPLETE OR
+               LPC_CURRENT_STATE = READ_DATA0 OR
+               LPC_CURRENT_STATE = READ_DATA1 OR
+               LPC_CURRENT_STATE = TAR_EXIT) ELSE '1';
 
 
 		--D0 recreates LFRAME. This is required for a 1.6
@@ -284,7 +288,6 @@ PW : entity work.pwm port map(LPC_CLK,reset, pos, CONTRAST_TARGET);
 			
 				WHEN WAIT_START =>
 					IF LPC_LAD = "0000" THEN --indicates start of cycle for memory IO and DMA cycles, and indicates LFRAME on 1.3+
-						control_D0 <='1';
 						LPC_CURRENT_STATE <= CYCTYPE_DIR;
 					END IF;
 					
@@ -299,7 +302,7 @@ PW : entity work.pwm port map(LPC_CLK,reset, pos, CONTRAST_TARGET);
 						LPC_CURRENT_STATE <= ADDRESS;
 					ELSIF LPC_LAD(3 DOWNTO 1) = "010" THEN
 						CYCLE_TYPE <= MEM_READ;
-						COUNT<=7;
+						COUNT<=7; 
 						LPC_CURRENT_STATE <= ADDRESS;
 					ELSIF LPC_LAD(3 DOWNTO 1) = "011" THEN
 						CYCLE_TYPE <= MEM_WRITE;
@@ -317,15 +320,15 @@ PW : entity work.pwm port map(LPC_CLK,reset, pos, CONTRAST_TARGET);
 						LPC_ADDRESS(19 DOWNTO 16) <= LPC_LAD;
 						--BANK CONTROL
 						CASE REG_XBLAST_CONTROL(1 DOWNTO 0) IS --this skips 00 which is another BNK512
-							WHEN "01" => 
+							WHEN "00" => 
 								LPC_ADDRESS(20 DOWNTO 19) <= "00"; --BNK512 
 							WHEN "10" => 
 								LPC_ADDRESS(20 DOWNTO 18) <= "010"; --BNK256
 							WHEN "11" => 
 								LPC_ADDRESS(20 DOWNTO 18) <= "011"; --BNKOS
-							WHEN "00" =>
+							WHEN "01" =>
 								LPC_CURRENT_STATE <= WAIT_START;
-								control_D0<='1';
+								--control_D0<='1';
 							WHEN OTHERS => 	
 						END CASE;
 				
@@ -397,10 +400,14 @@ PW : entity work.pwm port map(LPC_CLK,reset, pos, CONTRAST_TARGET);
 					LPC_CURRENT_STATE <= TAR2;
 				WHEN TAR2 => 
 					LPC_CURRENT_STATE <= SYNC;
-					COUNT <= 6;
+					IF CYCLE_TYPE = MEM_READ THEN
+						COUNT <= 2;-- 6; 
+					ELSIF CYCLE_TYPE = IO_READ THEN
+						COUNT <= 6;
+					END IF;
 
 				WHEN SYNC =>
-					COUNT <= COUNT - 1;    
+					COUNT <= COUNT - 1;--always does COUNT+1 sync cycles
 					--Buffer IO reads during syncing. Helps output timings
 					IF COUNT = 1 THEN
 						IF CYCLE_TYPE = MEM_READ THEN

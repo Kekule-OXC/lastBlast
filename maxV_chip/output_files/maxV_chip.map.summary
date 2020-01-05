@@ -1,9 +1,9 @@
-Analysis & Synthesis Status : Successful - Fri Dec 20 06:07:19 2019
+Analysis & Synthesis Status : Successful - Thu Jan 02 16:15:02 2020
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : maxV_chip
 Top-level Entity Name : MAXV_CHIP
 Family : MAX V
-Total logic elements : 156
+Total logic elements : 154
 Total pins : 49
 Total virtual pins : 0
 UFM blocks : 0 / 1 ( 0 % )

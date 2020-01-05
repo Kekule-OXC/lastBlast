@@ -1,5 +1,5 @@
 Assembler report for maxV_chip
-Fri Dec 20 06:07:24 2019
+Thu Jan 02 16:15:08 2020
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -10,8 +10,8 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/output_files/maxV_chip.pof
-  6. Assembler Device Options: C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/output_files/maxV_chip.svf
+  5. Assembler Device Options: C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/output_files/maxV_chip.pof
+  6. Assembler Device Options: C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/output_files/maxV_chip.svf
   7. Assembler Messages
 
 
@@ -38,7 +38,7 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Fri Dec 20 06:07:24 2019 ;
+; Assembler Status      ; Successful - Thu Jan 02 16:15:08 2020 ;
 ; Revision Name         ; maxV_chip                             ;
 ; Top-level Entity Name ; MAXV_CHIP                             ;
 ; Family                ; MAX V                                 ;
@@ -53,33 +53,33 @@ refer to the applicable agreement for further details.
 +--------+---------+---------------+
 
 
-+----------------------------------------------------------------------------------------+
-; Assembler Generated Files                                                              ;
-+----------------------------------------------------------------------------------------+
-; File Name                                                                              ;
-+----------------------------------------------------------------------------------------+
-; C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/output_files/maxV_chip.pof ;
-; C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/output_files/maxV_chip.svf ;
-+----------------------------------------------------------------------------------------+
++---------------------------------------------------------------------------------+
+; Assembler Generated Files                                                       ;
++---------------------------------------------------------------------------------+
+; File Name                                                                       ;
++---------------------------------------------------------------------------------+
+; C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/output_files/maxV_chip.pof ;
+; C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/output_files/maxV_chip.svf ;
++---------------------------------------------------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/output_files/maxV_chip.pof ;
-+----------------+-------------------------------------------------------------------------------------------------+
-; Option         ; Setting                                                                                         ;
-+----------------+-------------------------------------------------------------------------------------------------+
-; JTAG usercode  ; 0x00177FAE                                                                                      ;
-; Checksum       ; 0x0017820E                                                                                      ;
-+----------------+-------------------------------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/output_files/maxV_chip.pof ;
++----------------+------------------------------------------------------------------------------------------+
+; Option         ; Setting                                                                                  ;
++----------------+------------------------------------------------------------------------------------------+
+; JTAG usercode  ; 0x00178170                                                                               ;
+; Checksum       ; 0x00178570                                                                               ;
++----------------+------------------------------------------------------------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/Users/aaron/Documents/00-CPLD/lastBlast-master/maxV_chip/output_files/maxV_chip.svf ;
-+-----------+------------------------------------------------------------------------------------------------------+
-; Option    ; Setting                                                                                              ;
-+-----------+------------------------------------------------------------------------------------------------------+
-; SVF file  ;                                                                                                      ;
-+-----------+------------------------------------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/aaron/Documents/00-CPLD/lastBlast/maxV_chip/output_files/maxV_chip.svf ;
++-----------+-----------------------------------------------------------------------------------------------+
+; Option    ; Setting                                                                                       ;
++-----------+-----------------------------------------------------------------------------------------------+
+; SVF file  ;                                                                                               ;
++-----------+-----------------------------------------------------------------------------------------------+
 
 
 +--------------------+
@@ -88,14 +88,14 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Fri Dec 20 06:07:24 2019
+    Info: Processing started: Thu Jan 02 16:15:07 2020
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off maxV_chip -c maxV_chip
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 4660 megabytes
-    Info: Processing ended: Fri Dec 20 06:07:24 2019
-    Info: Elapsed time: 00:00:00
+    Info: Peak virtual memory: 4661 megabytes
+    Info: Processing ended: Thu Jan 02 16:15:08 2020
+    Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 
 
